@@ -73,28 +73,15 @@
   object-fit: cover;
 }
 
-/* Placeholder only (until the F1 photo, UIO5): 1 px outline and a centred mullion */
-.arch--placeholder::before,
-.arch--placeholder::after {
+/* F1 photo in the arch (UIO5, owner's decision 18.11.2026): thin 1 px outline only, no mullion */
+.arch--outlined::before {
   content: "";
   position: absolute;
-  pointer-events: none;
-}
-
-.arch--placeholder::before {
   inset: 0;
   z-index: 1;
   border: 1px solid var(--color-espresso);
   border-radius: inherit;
-}
-
-.arch--placeholder::after {
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 0.828%;                       /* 3.4 px at 410.7 px */
-  transform: translateX(-50%);
-  background: var(--color-espresso);
+  pointer-events: none;
 }
 
 /* Today's hours line (UX6): shown only when today.js works (website-tech-spec.md §6) */

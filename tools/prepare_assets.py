@@ -4,7 +4,7 @@ Creates web copies of approved materials and replaceable placeholders.
 Originals are only read, never modified.
 
 Requirements: Python 3.11+, Pillow (with AVIF and WebP support), fontTools.
-Usage:  python tools/prepare_assets.py <source-folder> <public-folder>
+Usage:  python tools/prepare_assets.py <source-folder> <public-folder> <photo-masters-folder>
 
 <source-folder> must contain copies of:
   Geologica-VF.ttf, OFL_Geologica.txt, LABEL_ETH_1to1.png, CARD_FRONT.png,
@@ -12,6 +12,10 @@ Usage:  python tools/prepare_assets.py <source-folder> <public-folder>
 The pack fronts are exported (1200 px wide) from the approved Pack250/Kvatyrka_Pack250_composition_study_v11_F2a.ai,
 artboards LINEUP_ETH / LINEUP_COL / LINEUP_BRA, with the technical layers 00_INFO, 01_DIELINE_TECH, 09_ANNOT,
 10_3D_PREVIEW hidden; the source file is closed without saving. Copies: tools/source-exports/.
+
+<photo-masters-folder> is Website/Photos/04_masters (approved masters F1–F7: PNG, RGB, embedded sRGB,
+no alpha; see website-photo-brief.md). The masters are only resized and encoded; all metadata
+(ICC, EXIF, GPS) is dropped from the web files — browsers treat untagged images as sRGB.
 """
 
 import sys
@@ -34,12 +38,6 @@ WEIGHTS = {400: "regular", 500: "medium", 600: "semibold"}
 
 # Placeholders: file stem -> (aspect w, aspect h, widths, label)
 PLACEHOLDERS = {
-    "photos/f2-visit-entrance":   (4, 3,     [480, 960, 1480],  "Photo placeholder · F2"),
-    "photos/f2-visit-entrance-portrait": (3, 4, [480, 960],     "Photo placeholder · F2"),  # < 768 px (3 : 4)
-    "photos/f3-menu-espresso":    (4, 3,     [480, 1040],       "Photo placeholder · F3"),
-    "photos/f4-menu-filter":      (4, 3,     [480, 1040],       "Photo placeholder · F4"),
-    "photos/f6-story":            (4, 5,     [420, 840, 1260],  "Photo placeholder · F6"),
-    "photos/f7-beans":            (4, 3,     [480, 960, 1260],  "Photo placeholder · F7"),
     "photos/district-map":        (4, 3,     [480, 960, 1260],  "Map placeholder"),
     "packs/kenya-front":          (7, 12,    [300, 600],        "Pack placeholder"),
     "packs/sadova-8-blend-front": (7, 12,    [300, 600],        "Pack placeholder"),
@@ -47,13 +45,29 @@ PLACEHOLDERS = {
 }
 
 
-def save_web(img: Image.Image, stem: Path, width: int) -> None:
-    """Save one width as AVIF and WebP."""
+# Approved photo masters (Website/Photos/04_masters) -> file stem, widths, (AVIF, WebP) quality.
+# F3 and F7 (fine detail: steel texture, pack labels) use a higher quality; all stay within the budgets
+# of website-photo-brief.md §5.3.
+MASTERS = {
+    "photos/f1-hero-window":             ("F1_hero-window_master_909x1399.png",                  [420, 840],        (60, 82)),
+    "photos/f2-visit-entrance":          ("F2_visit-entrance_master_4x3_2048x1536.png",          [480, 960, 1480],  (60, 82)),
+    "photos/f2-visit-entrance-portrait": ("F2_visit-entrance-portrait_master_3x4_1152x1536.png", [480, 960],        (60, 82)),
+    "photos/f3-menu-espresso":           ("F3_menu-espresso_master_1040x780.png",                [480, 1040],       (68, 86)),
+    "photos/f4-menu-filter":             ("F4_menu-pourover_master_1040x780.png",                [480, 1040],       (60, 82)),
+    "photos/f5-roastery":                ("F5_roastery_master_1480x1110.png",                    [480, 960, 1480],  (60, 82)),
+    "photos/f6-story":                   ("F6_story_master_1260x1575.png",                       [420, 840, 1260],  (60, 82)),
+    "photos/f7-beans":                   ("F7_beans_master_1260x945.png",                        [480, 960, 1260],  (68, 86)),
+}
+
+
+def save_web(img: Image.Image, stem: Path, width: int, quality: tuple[int, int] = (60, 82)) -> None:
+    """Save one width as AVIF and WebP, without metadata."""
     h = round(img.height * width / img.width)
     im = img.resize((width, h), Image.LANCZOS) if img.width != width else img
+    im = Image.frombytes("RGB", im.size, im.convert("RGB").tobytes())   # drop ICC / EXIF / GPS
     stem.parent.mkdir(parents=True, exist_ok=True)
-    im.save(f"{stem}-{width}.avif", quality=60)
-    im.save(f"{stem}-{width}.webp", quality=82, method=6)
+    im.save(f"{stem}-{width}.avif", quality=quality[0])
+    im.save(f"{stem}-{width}.webp", quality=quality[1], method=6)
 
 
 def make_fonts(src: Path, out: Path) -> None:
@@ -90,7 +104,7 @@ def placeholder(aw: int, ah: int, label: str, font_file: Path, base_w: int = 160
     return img
 
 
-def main(src: Path, public: Path) -> None:
+def main(src: Path, public: Path, masters: Path) -> None:
     assets = public / "assets"
     make_fonts(src, assets / "fonts")
 
@@ -106,18 +120,11 @@ def main(src: Path, public: Path) -> None:
         for wdt in widths:
             save_web(img, assets / stem, wdt)
 
-    # F5 sits in the dark Roastery section (v50): Espresso surface, Cream outline and label
-    f5 = placeholder(4, 3, "Photo placeholder · F5", label_font, bg=ESPRESSO, ink=CREAM)
-    for wdt in (480, 960, 1480):
-        save_web(f5, assets / "photos/f5-roastery", wdt)
-
-    # F1 sits in the arch: no rectangular outline (the arch outline and mullion are drawn by CSS,
-    # .arch--placeholder); short label in the left pane so the mullion never crosses it.
-    f1 = Image.new("RGB", (1644, round(1644 * 632 / 410.667)), CREAM)
-    ImageDraw.Draw(f1).text((99, f1.height // 2), "F1 · placeholder", fill=ESPRESSO,
-                            font=ImageFont.truetype(str(label_font), 56), anchor="lm")
-    for wdt in (420, 840):
-        save_web(f1, assets / "photos/f1-hero-window", wdt)
+    # Approved photo masters F1–F7 (replace the former placeholders, same file names)
+    for stem, (name, widths, quality) in MASTERS.items():
+        img = Image.open(masters / name).convert("RGB")
+        for wdt in widths:
+            save_web(img, assets / stem, wdt, quality)
 
     # Approved pack fronts (ART18), 7 : 12
     for name in ("ethiopia", "colombia", "brazil"):
@@ -139,4 +146,4 @@ def main(src: Path, public: Path) -> None:
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]), Path(sys.argv[2]))
+    main(Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]))

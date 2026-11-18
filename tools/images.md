@@ -24,17 +24,28 @@ All files in `public/assets` are copies or web exports of approved materials, or
 | `label/ethiopia-label` | `Pack250\_preview_v11\LABEL_ETH_1to1.png` (clean sticker, 1974 × 1392) | 660, 1320 |
 | `loyalty/loyalty-card-front` | `LoyaltyCard\Preview\_export_raw\900ppi\CARD_FRONT.png` (export of `Kvatyrka_LoyaltyCard_FINAL.ai`, 3189 × 1772) | 520, 1040, 1560 |
 
+## Photos F1–F7 — `public/assets/photos` (approved masters, 18.11.2026)
+
+Source: `Website\Photos\04_masters` (PNG, RGB, embedded sRGB IEC61966-2.1, no alpha; approval log — `website-photo-brief.md` §8–15). Resized with Lanczos, AVIF + WebP; the script writes them without ICC / EXIF / GPS. Quality AVIF / WebP 60 / 82; F3 and F7 68 / 86. The committed files additionally carry a C2PA content-credentials manifest (≈ 5.9 KB per file) added when the files were delivered from the AI workspace; pixels are identical to the script output.
+
+| Stem | Master | Widths | Largest AVIF |
+|---|---|---|---|
+| `photos/f1-hero-window` | `F1_hero-window_master_909x1399.png` (arch 410.667 : 632) | 420, 840 | 72 KB |
+| `photos/f2-visit-entrance` | `F2_visit-entrance_master_4x3_2048x1536.png` | 480, 960, 1480 | 158 KB |
+| `photos/f2-visit-entrance-portrait` | `F2_visit-entrance-portrait_master_3x4_1152x1536.png` (< 768 px) | 480, 960 | 117 KB |
+| `photos/f3-menu-espresso` | `F3_menu-espresso_master_1040x780.png` | 480, 1040 | 83 KB |
+| `photos/f4-menu-filter` | `F4_menu-pourover_master_1040x780.png` | 480, 1040 | 60 KB |
+| `photos/f5-roastery` | `F5_roastery_master_1480x1110.png` | 480, 960, 1480 | 85 KB |
+| `photos/f6-story` | `F6_story_master_1260x1575.png` | 420, 840, 1260 | 91 KB |
+| `photos/f7-beans` | `F7_beans_master_1260x945.png` (pack fronts composited from the approved v11_F2a exports) | 480, 960, 1260 | 83 KB |
+
 ## Placeholders (replace by files with the same names)
 
 Cream `#F6EEDF` surface, 1 px Espresso `#3B2A22` outline, small label. They do not imitate photos or packaging.
 
 | Stem | Ratio | Widths |
 |---|---|---|
-| `photos/f1-hero-window` | 411 : 632 (arch) | 420, 840 |
-| `photos/f2-visit-entrance`, `photos/f5-roastery` | 4 : 3 | 480, 960, 1480 |
-| `photos/f3-menu-espresso`, `photos/f4-menu-filter` | 4 : 3 | 480, 1040 |
-| `photos/f6-story` | 4 : 5 | 420, 840, 1260 |
-| `photos/f7-beans`, `photos/district-map` | 4 : 3 | 480, 960, 1260 |
+| `photos/district-map` | 4 : 3 | 480, 960, 1260 |
 | `packs/kenya-front`, `packs/sadova-8-blend-front`, `packs/indonesia-front` | 7 : 12 | 300, 600 |
 
 ## Not yet prepared
