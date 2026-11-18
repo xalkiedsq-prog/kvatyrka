@@ -43,7 +43,6 @@ WEIGHTS = {400: "regular", 500: "medium", 600: "semibold"}
 
 # Placeholders: file stem -> (aspect w, aspect h, widths, label)
 PLACEHOLDERS = {
-    "photos/district-map":        (4, 3,     [480, 960, 1260],  "Map placeholder"),
 }
 
 
@@ -106,6 +105,18 @@ def placeholder(aw: int, ah: int, label: str, font_file: Path, base_w: int = 160
     return img
 
 
+# District scheme (Visit): concept scheme drawn as vector Website/Map/Kvatyrka_District_Map_v01.svg
+# (628 × 471, ART14; only existing data: Sadova St., No. 8, the square, Concept location), rendered at 4×.
+DISTRICT_MAP = "Kvatyrka_District_Map_v01_2512x1884.png"
+
+
+def make_district_map(map_folder: Path, assets: Path, widths=(480, 960, 1260), quality=(80, 90)) -> None:
+    """Flat graphics with small type: higher quality than the photos; no ICC / EXIF."""
+    img = Image.open(map_folder / DISTRICT_MAP).convert("RGB")
+    for wdt in widths:
+        save_web(img, assets / "photos/district-map", wdt, quality)
+
+
 # Realistic packs: catalogue file stem -> transparent export in <pack3d-folder>
 PACKS3D = {
     "packs/ethiopia-pack3d":       "Kvatyrka_pack3d_1_Ethiopia_transparent_2048x3072.png",
@@ -157,6 +168,9 @@ def main(src: Path, public: Path, masters: Path, pack3d: Path) -> None:
 
     # Realistic packs of the six coffees (catalogue cards)
     make_packs(pack3d, assets)
+
+    # District scheme (Website/Map, next to Website/Photos)
+    make_district_map(masters.parents[1] / "Map", assets)
 
     # The label itself, 106 × 72 mm, without the 5 mm white margin of the LABEL_ETH_1to1 artboard
     # (1974 × 1392 px export: 85 px margin, label 1804 × 1225 px); rounded corners are drawn by CSS.

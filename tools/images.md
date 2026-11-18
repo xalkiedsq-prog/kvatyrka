@@ -1,6 +1,6 @@
 # Assets — sources and preparation
 
-All files in `public/assets` are copies or web exports of approved materials, or replaceable placeholders. Originals were only read, never changed. Re-create with `tools/prepare_assets.py`.
+All files in `public/assets` are copies or web exports of approved materials (no placeholders remain since 18.11.2026). Originals were only read, never changed. Re-create with `tools/prepare_assets.py`.
 
 ## Fonts — `public/assets/fonts`
 
@@ -52,13 +52,9 @@ Six catalogue packs on one blank 3D mockup: `Pack250\_mockup_3d_v1\Kvatyrka_pack
 | `packs/sadova-8-blend-pack3d` | `…_5_Sadova8_transparent_…` | 300, 600 | 13 / 33 KB |
 | `packs/indonesia-pack3d` | `…_6_Indonesia_transparent_…` | 300, 600 | 12 / 32 KB |
 
-## Placeholders (replace by files with the same names)
+## District scheme — `public/assets/photos/district-map` (18.11.2026)
 
-Cream `#F6EEDF` surface, 1 px Espresso `#3B2A22` outline, small label. They do not imitate photos or packaging.
-
-| Stem | Ratio | Widths |
-|---|---|---|
-| `photos/district-map` | 4 : 3 | 480, 960, 1260 |
+Concept scheme, not a real map (ART14): vector master `Website\Map\Kvatyrka_District_Map_v01.svg` (628 × 471, opens in Illustrator), rendered at 4× to `Kvatyrka_District_Map_v01_2512x1884.png`. Only data that already exist on the site: Sadova St., No. 8 (K5 master `k5-light.svg`, geometry unchanged, 64 px), the square (`A few steps from the square`), `CONCEPT LOCATION` on the scheme; cross streets have no names (Q5 postponed). «Вершки» background, blocks — 1 px «Еспресо» outline, Sadova St. — 1.5 px edges, the square — «Листок» `#7FA27A`; labels Geologica Medium, caps, 22 px, tracking 80 (≈ 11.5 px at 360). `make_district_map()`: AVIF / WebP 80 / 90 (flat graphics with small type), widths 480, 960, 1260; 5–14 KB AVIF. URLs carry `?v=20261118` (same file names as the former placeholder, `/assets/photos/*` cached for a day).
 
 ## Pack fronts for the F7 composite
 
