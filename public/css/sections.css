@@ -214,10 +214,6 @@
   display: inline;
 }
 
-.visit__landmarks {
-  margin-top: 32px;
-}
-
 .visit__photo,
 .visit__map {
   overflow: hidden;
