@@ -2,7 +2,7 @@
 
 **KVATYRKA is a fictional concept project.** It presents an imagined Ukrainian neighbourhood coffee shop and roastery. The business, address, opening hours, prices and loyalty terms are invented for demonstration. The site takes no real orders, accepts no payments and collects no personal data.
 
-**Live site:** the link will be added after publication.
+**Live site:** https://kvatyrka.pages.dev/
 
 ## Stack
 
