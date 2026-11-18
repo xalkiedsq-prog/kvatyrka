@@ -4,14 +4,19 @@ Creates web copies of approved materials and replaceable placeholders.
 Originals are only read, never modified.
 
 Requirements: Python 3.11+, Pillow (with AVIF and WebP support), fontTools.
-Usage:  python tools/prepare_assets.py <source-folder> <public-folder> <photo-masters-folder>
+Usage:  python tools/prepare_assets.py <source-folder> <public-folder> <photo-masters-folder> <pack3d-folder>
 
 <source-folder> must contain copies of:
-  Geologica-VF.ttf, OFL_Geologica.txt, LABEL_ETH_1to1.png, CARD_FRONT.png,
-  pack-front-{ethiopia,colombia,brazil}.png
-The pack fronts are exported (1200 px wide) from the approved Pack250/Kvatyrka_Pack250_composition_study_v11_F2a.ai,
+  Geologica-VF.ttf, OFL_Geologica.txt, LABEL_ETH_1to1.png, CARD_FRONT.png
+(pack-front-{ethiopia,colombia,brazil}.png in tools/source-exports are kept as the sources of the F7 photo
+composite; the catalogue no longer uses flat fronts.) The pack fronts are exported (1200 px wide) from the approved Pack250/Kvatyrka_Pack250_composition_study_v11_F2a.ai,
 artboards LINEUP_ETH / LINEUP_COL / LINEUP_BRA, with the technical layers 00_INFO, 01_DIELINE_TECH, 09_ANNOT,
 10_3D_PREVIEW hidden; the source file is closed without saving. Copies: tools/source-exports/.
+
+<pack3d-folder> is Pack250/_mockup_3d_v1/exports: the approved realistic packs of the six coffees
+(transparent PNG 2048 × 3072, sRGB, from Kvatyrka_pack_3d_master.psd — one blank mockup, the six
+approved fronts of Kvatyrka_Pack250_composition_study_v16_F2a_6SORTS.ai; owner's approval 18.11.2026).
+They replace the flat pack fronts of the catalogue (ART18 revised by the owner).
 
 <photo-masters-folder> is Website/Photos/04_masters (approved masters F1–F7: PNG, RGB, embedded sRGB,
 no alpha; see website-photo-brief.md). The masters are only resized and encoded; all metadata
@@ -39,9 +44,6 @@ WEIGHTS = {400: "regular", 500: "medium", 600: "semibold"}
 # Placeholders: file stem -> (aspect w, aspect h, widths, label)
 PLACEHOLDERS = {
     "photos/district-map":        (4, 3,     [480, 960, 1260],  "Map placeholder"),
-    "packs/kenya-front":          (7, 12,    [300, 600],        "Pack placeholder"),
-    "packs/sadova-8-blend-front": (7, 12,    [300, 600],        "Pack placeholder"),
-    "packs/indonesia-front":      (7, 12,    [300, 600],        "Pack placeholder"),
 }
 
 
@@ -104,7 +106,34 @@ def placeholder(aw: int, ah: int, label: str, font_file: Path, base_w: int = 160
     return img
 
 
-def main(src: Path, public: Path, masters: Path) -> None:
+# Realistic packs: catalogue file stem -> transparent export in <pack3d-folder>
+PACKS3D = {
+    "packs/ethiopia-pack3d":       "Kvatyrka_pack3d_1_Ethiopia_transparent_2048x3072.png",
+    "packs/kenya-pack3d":          "Kvatyrka_pack3d_2_Kenya_transparent_2048x3072.png",
+    "packs/colombia-pack3d":       "Kvatyrka_pack3d_3_Colombia_transparent_2048x3072.png",
+    "packs/brazil-pack3d":         "Kvatyrka_pack3d_4_Brazil_transparent_2048x3072.png",
+    "packs/sadova-8-blend-pack3d": "Kvatyrka_pack3d_5_Sadova8_transparent_2048x3072.png",
+    "packs/indonesia-pack3d":      "Kvatyrka_pack3d_6_Indonesia_transparent_2048x3072.png",
+}
+
+
+def make_packs(pack3d: Path, assets: Path, widths=(300, 600), quality=(70, 86)) -> None:
+    """Crop each transparent pack to the bag (the same box for all six: one mockup), resize with
+    premultiplied alpha (no halo), keep the alpha channel; AVIF + WebP, no ICC / EXIF."""
+    boxes = {stem: Image.open(pack3d / name).getchannel("A").getbbox() for stem, name in PACKS3D.items()}
+    box = next(iter(boxes.values()))
+    assert all(b == box for b in boxes.values()), boxes
+    for stem, name in PACKS3D.items():
+        im = Image.open(pack3d / name).convert("RGBA").crop(box)
+        for wdt in widths:
+            hgt = round(im.height * wdt / im.width)
+            small = im.convert("RGBa").resize((wdt, hgt), Image.LANCZOS).convert("RGBA")
+            clean = Image.frombytes("RGBA", small.size, small.tobytes())
+            clean.save(assets / f"{stem}-{wdt}.avif", quality=quality[0])
+            clean.save(assets / f"{stem}-{wdt}.webp", quality=quality[1], method=6)
+
+
+def main(src: Path, public: Path, masters: Path, pack3d: Path) -> None:
     assets = public / "assets"
     make_fonts(src, assets / "fonts")
 
@@ -126,11 +155,8 @@ def main(src: Path, public: Path, masters: Path) -> None:
         for wdt in widths:
             save_web(img, assets / stem, wdt, quality)
 
-    # Approved pack fronts (ART18), 7 : 12
-    for name in ("ethiopia", "colombia", "brazil"):
-        front = Image.open(src / f"pack-front-{name}.png").convert("RGB")
-        for wdt in (300, 600):
-            save_web(front, assets / f"packs/{name}-front", wdt)
+    # Realistic packs of the six coffees (catalogue cards)
+    make_packs(pack3d, assets)
 
     # The label itself, 106 × 72 mm, without the 5 mm white margin of the LABEL_ETH_1to1 artboard
     # (1974 × 1392 px export: 85 px margin, label 1804 × 1225 px); rounded corners are drawn by CSS.
@@ -146,4 +172,4 @@ def main(src: Path, public: Path, masters: Path) -> None:
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]))
+    main(Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]), Path(sys.argv[4]))

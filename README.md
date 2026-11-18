@@ -33,3 +33,4 @@ Then open `http://127.0.0.1:8000`. Stop the server with `Ctrl+C` when you are do
 - **Geologica** typeface — SIL Open Font License 1.1 (`LICENSES/OFL-Geologica.txt`, also next to the font files in `public/assets/fonts/OFL.txt`). Web files are subsets of the original font.
 - **Lucide** icons — ISC License (`LICENSES/ISC-Lucide.txt`).
 - KVATYRKA name, logo, packaging and loyalty card are part of this concept project.
+- Photos and catalogue packs are visualisations, not photographs of a real place: AI-generated scenes, colour-graded in Photoshop; the six catalogue packs are one blank AI-generated pouch with the approved vector pack designs applied in Photoshop. Sources and preparation — `tools/images.md`.

@@ -674,11 +674,6 @@
   max-width: none;
 }
 
-.bean-card__pack--front {
-  outline: 1px solid var(--color-espresso);
-  outline-offset: -1px;
-}
-
 .bean-card__name {
   margin-top: 24px;
 }

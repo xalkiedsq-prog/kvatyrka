@@ -39,6 +39,19 @@ Source: `Website\Photos\04_masters` (PNG, RGB, embedded sRGB IEC61966-2.1, no al
 | `photos/f6-story` | `F6_story_master_1260x1575.png` | 420, 840, 1260 | 91 KB |
 | `photos/f7-beans` | `F7_beans_master_1260x945.png` (pack fronts composited from the approved v11_F2a exports) | 480, 960, 1260 | 83 KB |
 
+## Realistic packs — `public/assets/packs` (owner's approval 18.11.2026)
+
+Six catalogue packs on one blank 3D mockup: `Pack250\_mockup_3d_v1\Kvatyrka_pack_3d_master.psd` (blank mockup ×2 Preserve Details 2.0, the six approved fronts of `Kvatyrka_Pack250_composition_study_v16_F2a_6SORTS.ai` as smart objects, light and texture of the blank pouch in Multiply). Source of the web files: the transparent exports `Pack250\_mockup_3d_v1\exports\Kvatyrka_pack3d_<N>_<sort>_transparent_2048x3072.png` (sRGB). `make_packs()` crops all six to the same bag box (1431 × 2427 px, ratio 0.590), resizes with premultiplied alpha (no halo) and keeps the alpha channel; AVIF 70 / WebP 86, no ICC / EXIF. Written on the owner's computer, so the files carry no C2PA data. New file names (`-pack3d-`) — no stale browser cache. The flat fronts (`packs/*-front-*`, ART18 v1) and the three pack placeholders were removed; the catalogue `img` has `width="300" height="509"`, the same box as before (height 80 % of the 4 : 3 zone).
+
+| Stem | Export | Widths | AVIF 300 / 600 |
+|---|---|---|---|
+| `packs/ethiopia-pack3d` | `…_1_Ethiopia_transparent_…` | 300, 600 | 12 / 32 KB |
+| `packs/kenya-pack3d` | `…_2_Kenya_transparent_…` | 300, 600 | 12 / 32 KB |
+| `packs/colombia-pack3d` | `…_3_Colombia_transparent_…` | 300, 600 | 12 / 33 KB |
+| `packs/brazil-pack3d` | `…_4_Brazil_transparent_…` | 300, 600 | 13 / 33 KB |
+| `packs/sadova-8-blend-pack3d` | `…_5_Sadova8_transparent_…` | 300, 600 | 13 / 33 KB |
+| `packs/indonesia-pack3d` | `…_6_Indonesia_transparent_…` | 300, 600 | 12 / 32 KB |
+
 ## Placeholders (replace by files with the same names)
 
 Cream `#F6EEDF` surface, 1 px Espresso `#3B2A22` outline, small label. They do not imitate photos or packaging.
@@ -46,8 +59,7 @@ Cream `#F6EEDF` surface, 1 px Espresso `#3B2A22` outline, small label. They do n
 | Stem | Ratio | Widths |
 |---|---|---|
 | `photos/district-map` | 4 : 3 | 480, 960, 1260 |
-| `packs/kenya-front`, `packs/sadova-8-blend-front`, `packs/indonesia-front` | 7 : 12 | 300, 600 |
 
-## Not yet prepared
+## Pack fronts for the F7 composite
 
-- **Pack fronts Ethiopia, Colombia, Brazil** — `Pack250\_preview_v11\LINEUP_*.png` contain technical guides (seam lines, labels) and cannot be used on the site. Clean fronts are exported from the approved `Kvatyrka_Pack250_composition_study_v11_F2a.ai` (file opened read-only, closed without saving) in step 8.5, with the crop used in v50.
+`tools/source-exports/pack-front-{ethiopia,colombia,brazil}.png` — clean fronts exported from the approved `Kvatyrka_Pack250_composition_study_v11_F2a.ai` (technical layers hidden, file closed without saving). Used only as the sources of the F7 photo composite; the catalogue uses the realistic packs above.
