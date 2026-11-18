@@ -1,0 +1,1137 @@
+/* KVATYRKA — section layouts. Step 8.3: Hero and Visit (v50, UI27, UI28). Menu … Footer follow in 8.4–8.5.
+   Vertical gaps are set between line boxes; with Geologica typo metrics they reproduce the v50 positions. */
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  padding-block: 32px 0;               /* 360: the hero ends at the bottom of the arch */
+}
+
+.hero__text {
+  position: relative;
+  z-index: 1;                          /* text above V1 */
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-content: start;
+}
+
+.hero__text > * {
+  grid-column: 1 / -1;
+}
+
+.hero__title {
+  margin-left: -0.0855em;              /* left side bearing of SemiBold K: the stem sits on the column edge (v50) */
+}
+
+.hero__descriptor {
+  margin-top: 8px;
+}
+
+.hero__lead {
+  margin-top: 16px;
+}
+
+.hero__visit {
+  margin-top: 24px;
+}
+
+.hero__concept {
+  margin-top: 4px;
+}
+
+.hero__actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.hero__arch {
+  grid-column: 1 / -1;
+  margin-top: 32px;
+}
+
+/* Arch window: top corners R = W / 3 (UI27); proportion 410.667 : 632 at every width */
+.arch {
+  position: relative;
+  aspect-ratio: 410.667 / 632;
+  overflow: hidden;
+  border-radius: 33.333% 33.333% 0 0 / 21.66% 21.66% 0 0;
+}
+
+.arch picture {
+  height: 100%;
+}
+
+.arch__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder only (until the F1 photo, UIO5): 1 px outline and a centred mullion */
+.arch--placeholder::before,
+.arch--placeholder::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.arch--placeholder::before {
+  inset: 0;
+  z-index: 1;
+  border: 1px solid var(--color-espresso);
+  border-radius: inherit;
+}
+
+.arch--placeholder::after {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0.828%;                       /* 3.4 px at 410.7 px */
+  transform: translateX(-50%);
+  background: var(--color-espresso);
+}
+
+/* Today's hours line (UX6): shown only when today.js works (website-tech-spec.md §6) */
+.hero__today {
+  display: none;
+}
+
+.js .hero__today {
+  display: block;
+  visibility: hidden;
+}
+
+.ready-today .hero__today {
+  visibility: visible;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-block: 48px;
+  }
+
+  .hero__descriptor {
+    margin-top: 16px;
+  }
+
+  .hero__lead {
+    grid-column: 1 / span 6;
+  }
+
+  .hero__visit {
+    margin-top: 32px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .hero__arch {
+    grid-column: 5 / span 4;
+    margin-top: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__text {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+  }
+
+  .hero__lead {
+    grid-column: 1 / span 7;
+  }
+
+  .hero__arch {
+    grid-column: 9 / span 4;
+    grid-row: 1;
+    margin-top: 0;                     /* top of the arch = top of KVATYRKA */
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero__lead {
+    grid-column: 1 / span 6;
+  }
+
+  /* Sun Print V1, Apricot (UX25, ART12): one appearance, behind the text, scale only.
+     Source: assets/brand/v1-master.svg (ART24). 520 px wide, 318 px from the content edge, 304 px below the section top. */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 304px;
+    left: calc(var(--page-margin) + 318px);
+    width: 520px;
+    aspect-ratio: 368.504 / 231.222;
+    background: url("../assets/brand/v1-master.svg") no-repeat 0 0 / 100% 100%;
+    pointer-events: none;
+  }
+}
+
+/* ---------- Visit ---------- */
+
+.visit__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  align-items: start;
+}
+
+.visit__grid > * {
+  grid-column: 1 / -1;
+}
+
+.visit__title {
+  margin-top: var(--space-label-heading);
+}
+
+.visit__address {
+  margin-top: var(--space-h2-content);
+}
+
+.visit__concept {
+  margin-top: 8px;
+}
+
+/* Schedule: day · time · Today (UI28.8) */
+.hours {
+  margin-top: 20px;
+}
+
+.hours__row {
+  display: grid;
+  grid-template-columns: 96px auto;
+  justify-content: start;
+}
+
+.hours__time {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.hours__today {
+  display: none;
+}
+
+.ready-today .hours__today {
+  display: inline;
+}
+
+.visit__landmarks {
+  margin-top: 32px;
+}
+
+.visit__photo,
+.visit__map {
+  overflow: hidden;
+}
+
+.visit__photo picture,
+.visit__map picture {
+  height: 100%;
+}
+
+.visit__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visit__photo {
+  margin-top: 32px;
+  aspect-ratio: 3 / 4;                 /* 360: portrait F2 (UI28) */
+}
+
+.visit__route {
+  margin-top: 32px;
+}
+
+.visit__route-title {
+  font-size: var(--h2-size);           /* local exception: h3 at the H2 size of the width */
+  line-height: var(--h2-line);
+}
+
+.visit__route-label {
+  margin-top: var(--space-h2-content);
+}
+
+.visit__route-label + * {
+  margin-top: var(--space-label-heading);
+}
+
+.visit__map {
+  margin-top: 16px;
+  aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 768px) {
+  .visit__grid {
+    row-gap: var(--space-block);
+  }
+
+  .hours {
+    margin-top: 28px;
+  }
+
+  .visit__info {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+  }
+
+  .visit__photo {
+    grid-column: 5 / span 4;
+    grid-row: 1;
+    margin-top: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .visit__route {
+    grid-column: 5 / span 4;
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  .visit__map {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hours__row {
+    grid-template-columns: 120px auto;
+  }
+
+  .visit__photo {
+    grid-column: 6 / span 7;
+  }
+
+  .visit__route {
+    grid-column: 8 / span 5;
+  }
+
+  .visit__map {
+    grid-column: 1 / span 6;
+  }
+}
+
+/* ---------- Shared: section heading, photos ---------- */
+
+.section-title {
+  margin-top: var(--space-label-heading);       /* Label → H2 (UI14) */
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Menu (UI30.1, UI30.2): photo → group; zigzag from 768 ---------- */
+
+.menu__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  row-gap: var(--space-block);
+  align-items: start;
+}
+
+.menu__grid > * {
+  grid-column: 1 / -1;
+}
+
+.menu__prices {
+  margin-top: var(--space-h2-content);
+}
+
+.menu__photo {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.menu__photo picture,
+.story__photo picture,
+.roastery__photo picture {
+  height: 100%;
+}
+
+.menu__group {
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+.menu__group > h3 + * {
+  margin-top: 16px;                             /* H3 → first line */
+}
+
+.menu__list {
+  list-style: none;
+  padding: 0;
+}
+
+.menu__intro + .menu__list {
+  margin-top: 24px;
+}
+
+.menu-item + .menu-item {
+  margin-top: 16px;                             /* items without a coffee line */
+}
+
+.menu-item--sorted + .menu-item {
+  margin-top: 24px;                             /* after an item with a coffee line */
+}
+
+.menu-item__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  font-weight: var(--weight-medium);
+}
+
+.menu-item__price {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* Coffee line: link(s) + compact roast label; the label moves to its own line if it does not fit */
+.menu__sort {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-item__row + .menu__sort,
+.menu__sort + .menu__sort {
+  margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .menu__head {
+    grid-row: 1;
+  }
+
+  .menu__photo--espresso { grid-column: 5 / span 4; grid-row: 2; }
+  .menu__group--espresso { grid-column: 1 / span 4; grid-row: 2; }
+  .menu__photo--filter   { grid-column: 1 / span 4; grid-row: 3; }
+  .menu__group--filter   { grid-column: 5 / span 4; grid-row: 3; }
+  .menu__group--signature { grid-column: 1 / span 4; grid-row: 4; }
+  .menu__group--bakery   { grid-column: 5 / span 4; grid-row: 4; }
+  .menu__full            { grid-row: 5; }
+}
+
+@media (min-width: 1024px) {
+  .menu__photo--espresso,
+  .menu__group--filter,
+  .menu__group--bakery {
+    grid-column: 8 / span 5;
+  }
+
+  .menu__group--espresso,
+  .menu__photo--filter,
+  .menu__group--signature {
+    grid-column: 1 / span 5;
+  }
+}
+
+/* ---------- Story (UX21): heading → F6 → text; photo left from 768 ---------- */
+
+.story__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  align-items: start;
+}
+
+.story__grid > * {
+  grid-column: 1 / -1;
+}
+
+.story__photo {
+  margin-top: var(--space-h2-content);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.story__body {
+  margin-top: var(--space-block);
+}
+
+.story__pron {
+  margin-top: 4px;
+}
+
+.story__definition {
+  margin-top: 16px;
+}
+
+.story__rituals {
+  margin-top: var(--space-block);
+}
+
+.story__rituals + .story__text {
+  margin-top: 16px;
+}
+
+.story__text + .story__text {
+  margin-top: var(--space-paragraph);
+}
+
+@media (min-width: 768px) {
+  .story__grid {
+    grid-template-rows: auto 1fr;               /* the taller photo never pushes the text apart */
+  }
+
+  .story__head {
+    grid-column: 5 / span 4;
+    grid-row: 1;
+  }
+
+  .story__photo {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+  }
+
+  .story__body {
+    grid-column: 5 / span 4;
+    grid-row: 2;
+    margin-top: var(--space-h2-content);
+  }
+}
+
+@media (min-width: 1024px) {
+  .story__head,
+  .story__body {
+    grid-column: 8 / span 5;
+  }
+
+  .story__photo {
+    grid-column: 1 / span 6;
+  }
+}
+
+/* ---------- Roastery (UX21, UX22, ART20): dark; text → button → F5 ---------- */
+
+.roastery__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  align-items: start;
+}
+
+.roastery__grid > * {
+  grid-column: 1 / -1;
+}
+
+.section-title + .roastery__paragraph {
+  margin-top: var(--space-h2-content);
+}
+
+.roastery__paragraph + .roastery__paragraph {
+  margin-top: var(--space-paragraph);
+}
+
+.roastery__action {
+  display: flex;
+  margin-top: 32px;
+}
+
+.roastery__photo {
+  margin-top: var(--space-block);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .roastery__text {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+  }
+
+  .roastery__action {
+    display: inline-flex;
+  }
+
+  .roastery__photo {
+    grid-column: 5 / span 4;
+    grid-row: 1;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .roastery__photo {
+    grid-column: 6 / span 7;
+  }
+}
+
+/* ---------- Beans (UX14–UX19, UI18–UI21) ---------- */
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.beans__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  align-items: start;
+}
+
+.beans__grid > * {
+  grid-column: 1 / -1;
+}
+
+.beans__intro {
+  margin-top: var(--space-h2-content);
+}
+
+.beans__photo {
+  margin-top: var(--space-block);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.beans__photo picture {
+  height: 100%;
+}
+
+.beans__toolbar {
+  margin-top: var(--space-block);
+}
+
+.beans__guide-link {
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.filter {
+  margin-top: 16px;
+}
+
+.beans__cards {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  row-gap: var(--space-block);
+  margin-top: 32px;
+}
+
+/* Interactive parts appear only when their feature works (website-tech-spec.md §6) */
+.filter,
+.bean-card__grind,
+.bean-card__add {
+  display: none;
+}
+
+.js .filter {
+  display: block;
+  visibility: hidden;
+}
+
+.js .bean-card__grind {
+  display: flex;
+  visibility: hidden;
+}
+
+.js .bean-card__add {
+  display: inline-flex;
+  visibility: hidden;
+}
+
+.ready-filter .filter,
+.ready-cart .bean-card__grind,
+.ready-cart .bean-card__add {
+  visibility: visible;
+}
+
+/* Card (UI20) */
+.bean-card {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+.bean-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.bean-card__media picture {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bean-card__pack {
+  width: auto;
+  height: 100%;
+  max-width: none;
+}
+
+.bean-card__pack--front {
+  outline: 1px solid var(--color-espresso);
+  outline-offset: -1px;
+}
+
+.bean-card__name {
+  margin-top: 24px;
+}
+
+.bean-card__roast {
+  margin-top: 16px;
+}
+
+.bean-card__purpose {
+  margin-top: 8px;
+}
+
+.bean-card__origin {
+  margin-top: 16px;
+}
+
+.bean-card__notes {
+  margin-top: 8px;
+  font-weight: var(--weight-medium);
+}
+
+.bean-card__buy {
+  margin-top: auto;
+  padding-top: 24px;                   /* the row aligns price, grind and button at the bottom */
+}
+
+.bean-card__price {
+  font-weight: var(--weight-medium);
+}
+
+.bean-card__grind {
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.bean-card__add {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Label guide (UX19, ART21): callouts at every width, numbered list */
+.label-guide {
+  margin-top: var(--space-block);
+}
+
+.label-map {
+  margin: var(--space-h2-content) 0 0;
+  padding-bottom: 32px;                /* numbers 6 and 7 under the label */
+}
+
+.label-map__frame {
+  position: relative;
+  width: calc(100% - 40px);            /* numbers 1–5 to the right of the label */
+}
+
+.label-map__image {
+  width: 100%;
+  height: auto;
+  border-radius: 2.83% / 4.16%;        /* 3 mm corners of the 106 × 72 mm label */
+}
+
+.label-map__marks {
+  position: absolute;
+  inset: 0;
+}
+
+.label-map__mark--1 { --x: 96.31%; --y: 7.99%; }
+.label-map__mark--2 { --x: 43.94%; --y: 39.09%; }
+.label-map__mark--3 { --x: 41.07%; --y: 46.45%; }
+.label-map__mark--4 { --x: 50.75%; --y: 53.79%; }
+.label-map__mark--5 { --x: 73.82%; --y: 61.14%; }
+.label-map__mark--6 { --x: 39.61%; --y: 88.87%; }
+.label-map__mark--7 { --x: 80.16%; --y: 88.87%; }
+
+.label-map__line {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  right: -8px;
+  border-top: 1px solid var(--color-espresso);
+}
+
+.label-map__num {
+  position: absolute;
+  top: var(--y);
+  left: calc(100% + 14px);
+  transform: translateY(-50%);
+  font-weight: var(--weight-medium);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.label-map__mark--6 .label-map__line,
+.label-map__mark--7 .label-map__line {
+  right: auto;
+  bottom: -12px;
+  border-top: 0;
+  border-left: 1px solid var(--color-espresso);
+}
+
+.label-map__mark--6 .label-map__num,
+.label-map__mark--7 .label-map__num {
+  top: calc(100% + 14px);
+  left: var(--x);
+  transform: translateX(-50%);
+}
+
+.label-guide__list {
+  margin-top: var(--space-block);
+  padding: 0;
+  list-style: none;
+  counter-reset: guide;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+.label-guide__item {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  counter-increment: guide;
+}
+
+.label-guide__item::before {
+  content: counter(guide);
+  grid-row: 1;
+  font-weight: var(--weight-medium);
+  line-height: 16px;
+}
+
+.label-guide__field,
+.label-guide__text {
+  grid-column: 2;
+}
+
+.label-guide__text {
+  margin-top: 4px;
+}
+
+.label-guide__item + .label-guide__item {
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .beans__head {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+  }
+
+  .beans__photo {
+    grid-column: 5 / span 4;
+    grid-row: 1;
+    margin-top: 0;
+  }
+
+  .beans__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px 24px;
+  }
+
+  .beans__guide-link {
+    margin-top: 0;
+  }
+
+  .filter {
+    margin-top: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .beans__head {
+    grid-column: 1 / span 5;
+  }
+
+  .beans__photo {
+    grid-column: 7 / span 6;
+  }
+
+  .label-guide {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  .label-guide__title {
+    grid-column: 1 / -1;
+  }
+
+  .label-map {
+    grid-column: 1 / span 6;
+  }
+
+  .label-map__frame {
+    width: 100%;                       /* numbers sit in the gutter */
+  }
+
+  .label-map__num {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .label-guide__list {
+    grid-column: 8 / span 5;
+    margin-top: var(--space-h2-content);
+  }
+}
+
+/* ---------- Loyalty (UX20, ART19) ---------- */
+
+.loyalty__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  align-items: start;
+}
+
+.loyalty__grid > * {
+  grid-column: 1 / -1;
+}
+
+.loyalty__lead {
+  margin-top: var(--space-h2-content);
+}
+
+.loyalty__card {
+  position: relative;
+  margin-top: 32px;
+  overflow: hidden;
+  border-radius: 3.333% / 6%;          /* R 3 mm of the 90 × 50 mm card */
+}
+
+.loyalty__card::after {                /* 1 px Espresso contour along the cut line (П-3) */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-espresso);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.loyalty__image {
+  width: 100%;
+  height: auto;
+}
+
+.loyalty__body {
+  margin-top: 32px;
+}
+
+.steps {
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps > li {
+  position: relative;
+  padding-left: 28px;
+  counter-increment: step;
+}
+
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  font-weight: var(--weight-medium);
+}
+
+.steps > li + li {
+  margin-top: 16px;
+}
+
+.loyalty__demo {
+  margin-top: 32px;
+}
+
+.loyalty__action {
+  display: flex;
+  margin-top: 32px;
+}
+
+@media (min-width: 768px) {
+  .loyalty__grid {
+    grid-template-rows: auto 1fr;
+  }
+
+  .loyalty__card {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+  }
+
+  .loyalty__head,
+  .loyalty__body {
+    grid-column: 5 / span 4;
+  }
+
+  .loyalty__head {
+    grid-row: 1;
+  }
+
+  .loyalty__body {
+    grid-row: 2;
+  }
+
+  .loyalty__action {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .loyalty__card {
+    grid-column: 1 / span 5;
+  }
+
+  .loyalty__head,
+  .loyalty__body {
+    grid-column: 8 / span 5;
+  }
+
+  .steps > li {
+    padding-left: 32px;
+  }
+}
+
+/* ---------- Footer (UI29.1–UI29.4): dark, B2 from 1024 ---------- */
+
+.site-footer {
+  padding-block: var(--space-section);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  align-items: start;
+}
+
+.site-footer__grid > * {
+  grid-column: 1 / -1;
+}
+
+/* Logo B DARK: the SVG carries its clear space (artwork 473.3 of 573.9 units) — the visible logo fills the box */
+.site-footer__logo {
+  width: 220px;
+}
+
+.site-footer__logo-image {
+  width: 121.259%;
+  max-width: none;
+  height: auto;
+  margin: -10.628%;
+}
+
+.site-footer__visit {
+  margin-top: 32px;
+}
+
+.site-footer__concept {
+  margin-top: 8px;
+}
+
+.site-footer__link {
+  display: inline-block;
+  margin-top: 16px;
+}
+
+.site-footer .hours {
+  margin-top: 32px;
+}
+
+.site-footer__about {
+  margin-top: 32px;
+}
+
+.site-footer__about-text {
+  margin-top: 8px;
+}
+
+.site-footer__copy {
+  margin-top: 32px;
+}
+
+@media (min-width: 1024px) {
+  .site-footer__logo {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    width: auto;
+  }
+
+  .site-footer__visit {
+    grid-column: 5 / span 4;
+    grid-row: 1;
+    margin-top: 0;
+  }
+
+  .site-footer .hours {
+    grid-column: 9 / span 4;
+    grid-row: 1;
+    margin-top: 0;
+  }
+
+  .site-footer__about {
+    grid-column: 5 / span 7;
+    margin-top: var(--space-block);
+  }
+
+  .site-footer__copy {
+    grid-column: 1 / span 3;
+    margin-top: var(--space-block);
+  }
+}
+
+/* ---------- Step 8.6: states driven by JavaScript ---------- */
+
+/* Headings that receive programmatic focus: the ring follows the text (UI26.1) */
+.section-title,
+.visit__title {
+  width: fit-content;
+}
+
+.bean-card[hidden] {
+  display: none;                       /* hidden by the roast filter */
+}
+
+/* From Menu to a coffee (UI25): card top 24 px below the header, temporary target frame */
+.bean-card,
+.label-guide__title {
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+.bean-card[data-menu-target] {
+  outline: var(--focus-width) solid var(--color-espresso);
+  outline-offset: var(--focus-offset);
+}
+
+.bean-card__name:focus {
+  outline: none;                       /* the target frame of the card is the indicator */
+}

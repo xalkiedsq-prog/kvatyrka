@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kvatyrka — a fictional coffee shop &amp; roastery (concept project)</title>
+  <meta name="description" content="Kvatyrka is a fictional concept project: a Ukrainian neighbourhood coffee shop and roastery. Demo site, no real orders.">
+  <meta name="theme-color" content="#3B2A22">
+
+  <link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preload" href="assets/fonts/geologica-regular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/geologica-medium.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/geologica-semibold.woff" as="font" type="font/woff" crossorigin>
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+
+  <script src="js/js-flag.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="site-header__home" href="#hero">
+        <picture>
+          <source media="(min-width: 768px)" srcset="assets/brand/logo-h-light.svg" width="267" height="93">
+          <img class="site-header__logo" src="assets/brand/k5-light.svg" width="32" height="28" alt="Kvatyrka — back to top">
+        </picture>
+      </a>
+
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#visit">Visit</a></li>
+          <li><a class="site-nav__link" href="#menu">Menu</a></li>
+          <li><a class="site-nav__link" href="#story">Story</a></li>
+          <li><a class="site-nav__link" href="#beans">Beans</a></li>
+        </ul>
+      </nav>
+
+      <button class="cart-button" type="button" aria-haspopup="dialog" aria-controls="cart-panel" aria-label="Cart, 0 items" hidden data-cart-open>
+        <svg class="cart-button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>
+        <span class="cart-button__count" aria-hidden="true" data-cart-count>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero (UX3, UX5, UX6, UI27) -->
+    <section id="hero" class="hero container" aria-label="Kvatyrka">
+      <div class="hero__text">
+        <h1 class="hero__title t-display" tabindex="-1">Kvatyrka</h1>
+        <p class="hero__descriptor t-label">Coffee shop &amp; roastery</p>
+        <p class="hero__lead t-lead">Morning coffee by the open window, roasted a few steps from the counter.</p>
+        <div class="hero__visit">
+          <p class="hero__address t-body t-accent">8 Sadova Street · Lypovyi Kut</p>
+          <p class="hero__today t-body" data-today-line><span lang="uk">Відчинено</span> · Open today <span data-today-hours>7:30–20:00</span></p>
+          <p class="hero__concept t-small">Concept location</p>
+        </div>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#visit">Plan your visit</a>
+          <a class="button button--secondary" href="#menu">See the menu</a>
+        </div>
+      </div>
+      <div class="hero__arch">
+        <div class="arch arch--placeholder">
+          <picture>
+            <source type="image/avif" srcset="assets/photos/f1-hero-window-420.avif 420w, assets/photos/f1-hero-window-840.avif 840w" sizes="(min-width: 1440px) 411px, (min-width: 1024px) 30vw, (min-width: 768px) 44vw, 92vw">
+            <img class="arch__image" src="assets/photos/f1-hero-window-420.webp" srcset="assets/photos/f1-hero-window-420.webp 420w, assets/photos/f1-hero-window-840.webp 840w" sizes="(min-width: 1440px) 411px, (min-width: 1024px) 30vw, (min-width: 768px) 44vw, 92vw" width="411" height="632" alt="Photo placeholder F1: the café window in morning light (photo comes at the content stage).">
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visit (UX6–UX10, UI28.1–UI28.9) -->
+    <section id="visit" class="visit section" aria-labelledby="visit-title">
+      <div class="visit__grid container">
+        <div class="visit__info">
+          <p class="t-label">Visit</p>
+          <h2 id="visit-title" tabindex="-1" class="visit__title">Come by in the morning</h2>
+          <p class="visit__address t-body t-accent">8 Sadova Street · Lypovyi Kut, Ukraine</p>
+          <p class="visit__concept t-small">Concept location</p>
+          <dl class="hours t-body" data-hours>
+            <div class="hours__row" data-days="Mon Tue Wed Thu Fri">
+              <dt class="hours__days">Mon–Fri</dt>
+              <dd class="hours__time"><span class="t-accent" data-hours-time>7:30–20:00</span></dd>
+            </div>
+            <div class="hours__row" data-days="Sat">
+              <dt class="hours__days">Sat</dt>
+              <dd class="hours__time"><span class="t-accent" data-hours-time>8:30–20:00</span></dd>
+            </div>
+            <div class="hours__row" data-days="Sun">
+              <dt class="hours__days">Sun</dt>
+              <dd class="hours__time"><span class="t-accent" data-hours-time>9:00–18:00</span></dd>
+            </div>
+          </dl>
+          <p class="visit__landmarks t-body">Landmark 1 — working text. Landmark 2 — working text (content stage).</p>
+        </div>
+
+        <div class="visit__photo">
+          <picture>
+            <source media="(min-width: 768px)" type="image/avif" srcset="assets/photos/f2-visit-entrance-480.avif 480w, assets/photos/f2-visit-entrance-960.avif 960w, assets/photos/f2-visit-entrance-1480.avif 1480w" sizes="(min-width: 1440px) 737px, (min-width: 1024px) 57vw, 44vw" width="4" height="3">
+            <source media="(min-width: 768px)" srcset="assets/photos/f2-visit-entrance-480.webp 480w, assets/photos/f2-visit-entrance-960.webp 960w, assets/photos/f2-visit-entrance-1480.webp 1480w" sizes="(min-width: 1440px) 737px, (min-width: 1024px) 57vw, 44vw" width="4" height="3">
+            <source type="image/avif" srcset="assets/photos/f2-visit-entrance-portrait-480.avif 480w, assets/photos/f2-visit-entrance-portrait-960.avif 960w" sizes="92vw" width="3" height="4">
+            <img loading="lazy" class="visit__image" src="assets/photos/f2-visit-entrance-portrait-480.webp" srcset="assets/photos/f2-visit-entrance-portrait-480.webp 480w, assets/photos/f2-visit-entrance-portrait-960.webp 960w" sizes="92vw" width="3" height="4" alt="Photo placeholder F2: the café entrance from Sadova Street (photo comes at the content stage).">
+          </picture>
+        </div>
+
+        <div class="visit__route">
+          <h3 class="visit__route-title">A few steps from the square</h3>
+          <p class="visit__route-label t-label">How to find us</p>
+          <p class="t-body">Text alternative of the scheme (UX7): how the streets and the square relate to the café — working text, content stage.</p>
+        </div>
+
+        <div class="visit__map">
+          <picture>
+            <source type="image/avif" srcset="assets/photos/district-map-480.avif 480w, assets/photos/district-map-960.avif 960w, assets/photos/district-map-1260.avif 1260w" sizes="(min-width: 1440px) 628px, (min-width: 768px) 46vw, 92vw">
+            <img loading="lazy" class="visit__image" src="assets/photos/district-map-480.webp" srcset="assets/photos/district-map-480.webp 480w, assets/photos/district-map-960.webp 960w, assets/photos/district-map-1260.webp 1260w" sizes="(min-width: 1440px) 628px, (min-width: 768px) 46vw, 92vw" width="4" height="3" alt="District scheme placeholder (concept location; the scheme is drawn at the content stage). The route is described in the text above.">
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu (UX12, UX13, UI18, UI30.1, UI30.2) -->
+    <section id="menu" class="menu section" aria-labelledby="menu-title">
+      <div class="menu__grid container">
+        <div class="menu__head">
+          <p class="t-label">Menu</p>
+          <h2 id="menu-title" tabindex="-1" class="section-title">What we pour</h2>
+          <p class="menu__prices t-small">Prices in UAH · Demo prices</p>
+        </div>
+
+          <div class="menu__photo menu__photo--espresso">
+            <picture>
+              <source type="image/avif" srcset="assets/photos/f3-menu-espresso-480.avif 480w, assets/photos/f3-menu-espresso-1040.avif 1040w" sizes="(min-width: 1440px) 520px, (min-width: 1024px) 40vw, (min-width: 768px) 44vw, 92vw">
+              <img loading="lazy" class="photo" src="assets/photos/f3-menu-espresso-480.webp" srcset="assets/photos/f3-menu-espresso-480.webp 480w, assets/photos/f3-menu-espresso-1040.webp 1040w" sizes="(min-width: 1440px) 520px, (min-width: 1024px) 40vw, (min-width: 768px) 44vw, 92vw" width="4" height="3" alt="Photo placeholder F3: hands at the espresso machine (photo comes at the content stage).">
+            </picture>
+          </div>
+
+        <div class="menu__group menu__group--espresso">
+          <h3>Espresso bar</h3>
+          <p class="menu__sort menu__intro"><span>All espresso drinks: <a href="#sort-sadova-8-blend">Sadova 8 blend<span class="visually-hidden">, coffee in Beans</span></a></span><span class="roast roast--3"><span class="visually-hidden">Roast level </span><span class="roast__num">3</span><span class="visually-hidden">, </span><span class="roast__name">Medium</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></p>
+          <ul class="menu__list" role="list">
+                <li class="menu-item">
+                  <p class="menu-item__row"><span class="menu-item__name">Espresso</span><span class="menu-item__price">55 ₴</span></p>
+                </li>
+                <li class="menu-item">
+                  <p class="menu-item__row"><span class="menu-item__name">Americano</span><span class="menu-item__price">60 ₴</span></p>
+                </li>
+                <li class="menu-item">
+                  <p class="menu-item__row"><span class="menu-item__name">Cappuccino</span><span class="menu-item__price">80 ₴</span></p>
+                </li>
+                <li class="menu-item">
+                  <p class="menu-item__row"><span class="menu-item__name">Flat white</span><span class="menu-item__price">85 ₴</span></p>
+                </li>
+          </ul>
+        </div>
+
+          <div class="menu__photo menu__photo--filter">
+            <picture>
+              <source type="image/avif" srcset="assets/photos/f4-menu-filter-480.avif 480w, assets/photos/f4-menu-filter-1040.avif 1040w" sizes="(min-width: 1440px) 520px, (min-width: 1024px) 40vw, (min-width: 768px) 44vw, 92vw">
+              <img loading="lazy" class="photo" src="assets/photos/f4-menu-filter-480.webp" srcset="assets/photos/f4-menu-filter-480.webp 480w, assets/photos/f4-menu-filter-1040.webp 1040w" sizes="(min-width: 1440px) 520px, (min-width: 1024px) 40vw, (min-width: 768px) 44vw, 92vw" width="4" height="3" alt="Photo placeholder F4: V60 pour-over in the sunlight (photo comes at the content stage).">
+            </picture>
+          </div>
+
+        <div class="menu__group menu__group--filter">
+          <h3>Filter</h3>
+          <ul class="menu__list" role="list">
+                <li class="menu-item menu-item--sorted">
+                  <p class="menu-item__row"><span class="menu-item__name">Batch brew — filter of the day</span><span class="menu-item__price">65 ₴</span></p>
+                  <p class="menu__sort"><span><a href="#sort-ethiopia">Ethiopia<span class="visually-hidden">, coffee in Beans</span></a> or <a href="#sort-kenya">Kenya<span class="visually-hidden">, coffee in Beans</span></a></span><span class="roast roast--1"><span class="visually-hidden">Roast level </span><span class="roast__num">1</span><span class="visually-hidden">, </span><span class="roast__name">Light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></p>
+                </li>
+                <li class="menu-item menu-item--sorted">
+                  <p class="menu-item__row"><span class="menu-item__name">Pour-over (V60)</span><span class="menu-item__price">95 ₴</span></p>
+                  <p class="menu__sort"><span><a href="#sort-ethiopia">Ethiopia<span class="visually-hidden">, coffee in Beans</span></a> or <a href="#sort-kenya">Kenya<span class="visually-hidden">, coffee in Beans</span></a></span><span class="roast roast--1"><span class="visually-hidden">Roast level </span><span class="roast__num">1</span><span class="visually-hidden">, </span><span class="roast__name">Light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></p>
+                  <p class="menu__sort"><span>or <a href="#sort-colombia">Colombia<span class="visually-hidden">, coffee in Beans</span></a></span><span class="roast roast--2"><span class="visually-hidden">Roast level </span><span class="roast__num">2</span><span class="visually-hidden">, </span><span class="roast__name">Medium-light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></p>
+                </li>
+          </ul>
+        </div>
+
+        <div class="menu__group menu__group--signature">
+          <h3>Signature</h3>
+          <ul class="menu__list" role="list">
+                <li class="menu-item menu-item--sorted">
+                  <p class="menu-item__row"><span class="menu-item__name">Linden &amp; honey latte</span><span class="menu-item__price">95 ₴</span></p>
+                  <p class="menu__sort"><span><a href="#sort-sadova-8-blend">Sadova 8 blend<span class="visually-hidden">, coffee in Beans</span></a></span><span class="roast roast--3"><span class="visually-hidden">Roast level </span><span class="roast__num">3</span><span class="visually-hidden">, </span><span class="roast__name">Medium</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></p>
+                </li>
+                <li class="menu-item menu-item--sorted">
+                  <p class="menu-item__row"><span class="menu-item__name">Sea buckthorn espresso tonic</span><span class="menu-item__price">95 ₴</span></p>
+                  <p class="menu__sort"><span><a href="#sort-colombia">Colombia<span class="visually-hidden">, coffee in Beans</span></a></span><span class="roast roast--2"><span class="visually-hidden">Roast level </span><span class="roast__num">2</span><span class="visually-hidden">, </span><span class="roast__name">Medium-light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></p>
+                </li>
+          </ul>
+        </div>
+
+        <div class="menu__group menu__group--bakery">
+          <h3>Bakery</h3>
+          <ul class="menu__list" role="list">
+                <li class="menu-item">
+                  <p class="menu-item__row"><span class="menu-item__name">Butter croissant</span><span class="menu-item__price">70 ₴</span></p>
+                </li>
+                <li class="menu-item">
+                  <p class="menu-item__row"><span class="menu-item__name">Poppy seed roll</span><span class="menu-item__price">75 ₴</span></p>
+                </li>
+          </ul>
+        </div>
+
+        <p class="menu__full t-body">The full menu is at the café.</p>
+      </div>
+    </section>
+
+    <!-- Story (UX21, UX25, CB6) -->
+    <section id="story" class="story section" aria-labelledby="story-title">
+      <div class="story__grid container">
+        <div class="story__head">
+          <p class="t-label">Story</p>
+          <h2 id="story-title" tabindex="-1" class="section-title">What’s a kvatyrka?</h2>
+        </div>
+
+          <div class="story__photo">
+            <picture>
+              <source type="image/avif" srcset="assets/photos/f6-story-420.avif 420w, assets/photos/f6-story-840.avif 840w, assets/photos/f6-story-1260.avif 1260w" sizes="(min-width: 1440px) 628px, (min-width: 1024px) 48vw, (min-width: 768px) 44vw, 92vw">
+              <img loading="lazy" class="photo" src="assets/photos/f6-story-420.webp" srcset="assets/photos/f6-story-420.webp 420w, assets/photos/f6-story-840.webp 840w, assets/photos/f6-story-1260.webp 1260w" sizes="(min-width: 1440px) 628px, (min-width: 1024px) 48vw, (min-width: 768px) 44vw, 92vw" width="4" height="5" alt="Photo placeholder F6: a guest by the window, silhouette (photo comes at the content stage).">
+            </picture>
+          </div>
+
+        <div class="story__body">
+          <h3 lang="uk">Кватирка</h3>
+          <p class="story__pron t-small">kva-TIR-ka</p>
+          <p class="story__definition t-lead">A small opening sash in a window, used to let fresh air in.</p>
+          <h3 class="story__rituals">Morning rituals</h3>
+          <p class="story__text t-body">We open the doors at 7:30. The morning shift starts the machine, neighbours stop by on their way, and the first light comes in through the window.</p>
+          <p class="story__text t-body">Ordinary mornings, open windows, fresh air. That is what we keep.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roastery (UX21, UX22, ART20): dark composition -->
+    <section id="roastery" class="roastery section surface-dark" aria-labelledby="roastery-title">
+      <div class="roastery__grid container">
+        <div class="roastery__text">
+          <p class="t-label">Roastery</p>
+          <h2 id="roastery-title" tabindex="-1" class="section-title">We roast it ourselves</h2>
+          <p class="roastery__paragraph t-body">We roast our coffee in small batches — for our bar and for your kitchen.</p>
+          <p class="roastery__paragraph t-body">Every pack carries its roast date, so you always know when your coffee was roasted.</p>
+          <a class="roastery__action button button--secondary" href="#beans">Take our coffee home</a>
+        </div>
+
+          <div class="roastery__photo">
+            <picture>
+              <source type="image/avif" srcset="assets/photos/f5-roastery-480.avif 480w, assets/photos/f5-roastery-960.avif 960w, assets/photos/f5-roastery-1480.avif 1480w" sizes="(min-width: 1440px) 737px, (min-width: 1024px) 57vw, (min-width: 768px) 44vw, 92vw">
+              <img loading="lazy" class="photo" src="assets/photos/f5-roastery-480.webp" srcset="assets/photos/f5-roastery-480.webp 480w, assets/photos/f5-roastery-960.webp 960w, assets/photos/f5-roastery-1480.webp 1480w" sizes="(min-width: 1440px) 737px, (min-width: 1024px) 57vw, (min-width: 768px) 44vw, 92vw" width="4" height="3" alt="Photo placeholder F5: the roaster, cooling beans and hands (photo comes at the content stage).">
+            </picture>
+          </div>
+      </div>
+    </section>
+
+    <!-- Beans (UX14–UX19, UI18–UI21, ART18, ART21) -->
+    <section id="beans" class="beans section" aria-labelledby="beans-title">
+      <div class="beans__grid container">
+        <div class="beans__head">
+          <p class="t-label">Beans</p>
+          <h2 id="beans-title" tabindex="-1" class="section-title">Coffee to brew at home</h2>
+          <p class="beans__intro t-body">Six coffees we roast for our bar and for your kitchen. 250 g packs — whole beans, or ground for the way you brew.</p>
+        </div>
+
+        <div class="beans__photo">
+          <picture>
+            <source type="image/avif" srcset="assets/photos/f7-beans-480.avif 480w, assets/photos/f7-beans-960.avif 960w, assets/photos/f7-beans-1260.avif 1260w" sizes="(min-width: 1440px) 628px, (min-width: 1024px) 48vw, (min-width: 768px) 44vw, 92vw">
+            <img loading="lazy" class="photo" src="assets/photos/f7-beans-480.webp" srcset="assets/photos/f7-beans-480.webp 480w, assets/photos/f7-beans-960.webp 960w, assets/photos/f7-beans-1260.webp 1260w" sizes="(min-width: 1440px) 628px, (min-width: 1024px) 48vw, (min-width: 768px) 44vw, 92vw" width="4" height="3" alt="Photo placeholder F7: packs on the shelf and roasted beans (photo comes at the content stage).">
+          </picture>
+        </div>
+
+        <div class="beans__toolbar">
+          <p class="beans__prices t-small">Prices in UAH · Demo prices</p>
+          <a class="beans__guide-link t-body" href="#label-guide">How to read our label</a>
+        </div>
+
+        <fieldset class="filter" data-filter>
+          <legend class="visually-hidden">Roast level</legend>
+          <div class="filter__options">
+            <label class="filter__option">
+              <input class="filter__input" type="radio" name="roast-filter" value="all" checked>
+              <span class="filter__all">All<span class="visually-hidden"> roast levels</span></span>
+              <svg class="filter__check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+            </label>
+            <label class="filter__option filter__option--level">
+              <input class="filter__input" type="radio" name="roast-filter" value="1">
+              <span class="roast roast--full roast--1"><span class="visually-hidden">Roast level </span><span class="roast__num">1</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span><span class="filter__purpose"><span class="visually-hidden"> — </span>Filter</span>
+              <svg class="filter__check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+            </label>
+            <label class="filter__option filter__option--level">
+              <input class="filter__input" type="radio" name="roast-filter" value="2">
+              <span class="roast roast--full roast--2"><span class="visually-hidden">Roast level </span><span class="roast__num">2</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Medium-light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span><span class="filter__purpose"><span class="visually-hidden"> — </span>Filter &amp; espresso</span>
+              <svg class="filter__check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+            </label>
+            <span class="filter__break" aria-hidden="true"></span>
+            <label class="filter__option filter__option--level">
+              <input class="filter__input" type="radio" name="roast-filter" value="3">
+              <span class="roast roast--full roast--3"><span class="visually-hidden">Roast level </span><span class="roast__num">3</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Medium</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span><span class="filter__purpose"><span class="visually-hidden"> — </span>Espresso, with milk</span>
+              <svg class="filter__check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+            </label>
+            <label class="filter__option filter__option--level">
+              <input class="filter__input" type="radio" name="roast-filter" value="4">
+              <span class="roast roast--full roast--4"><span class="visually-hidden">Roast level </span><span class="roast__num">4</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Dark</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span><span class="filter__purpose"><span class="visually-hidden"> — </span>Espresso, cezve</span>
+              <svg class="filter__check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="beans__cards">
+          <article class="bean-card" id="sort-ethiopia" data-sort-id="ethiopia" data-roast="1" aria-labelledby="sort-ethiopia-name">
+            <div class="bean-card__media">
+              <picture>
+                <source type="image/avif" srcset="assets/packs/ethiopia-front-300.avif 300w, assets/packs/ethiopia-front-600.avif 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px">
+                <img loading="lazy" class="bean-card__pack bean-card__pack--front" src="assets/packs/ethiopia-front-300.webp" srcset="assets/packs/ethiopia-front-300.webp 300w, assets/packs/ethiopia-front-600.webp 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px" width="7" height="12" alt="Ethiopia 250 g pack, front.">
+              </picture>
+            </div>
+            <h3 id="sort-ethiopia-name" class="bean-card__name" tabindex="-1">Ethiopia</h3>
+            <p class="bean-card__roast"><span class="roast roast--full roast--1"><span class="visually-hidden">Roast level </span><span class="roast__num">1</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span></p>
+            <p class="bean-card__purpose">Filter</p>
+            <p class="bean-card__origin"><span class="nowrap">Sidamo&nbsp;·</span> <span class="nowrap">washed&nbsp;·</span> <span class="nowrap">1,900–2,100 m</span></p>
+            <p class="bean-card__notes"><span class="nowrap">bergamot&nbsp;·</span> <span class="nowrap">peach&nbsp;·</span> <span class="nowrap">black tea</span></p>
+            <div class="bean-card__buy">
+              <p class="bean-card__price"><span class="bean-card__price-amount">420</span> ₴ · 250 g</p>
+              <div class="bean-card__grind">
+                <label class="bean-card__grind-label" for="grind-ethiopia">Grind</label>
+                <span class="select">
+                  <select class="select__control" id="grind-ethiopia" name="grind-ethiopia">
+                    <option selected>Whole beans</option>
+                    <option>Ground for filter</option>
+                  </select>
+                  <svg class="select__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </div>
+              <button class="button button--secondary bean-card__add" type="button" aria-describedby="sort-ethiopia-name"><span class="bean-card__add-label">Add to cart</span><span class="bean-card__add-done"><svg class="bean-card__add-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Added</span></button>
+            </div>
+          </article>
+          <article class="bean-card" id="sort-kenya" data-sort-id="kenya" data-roast="1" aria-labelledby="sort-kenya-name">
+            <div class="bean-card__media">
+              <picture>
+                <source type="image/avif" srcset="assets/packs/kenya-front-300.avif 300w, assets/packs/kenya-front-600.avif 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px">
+                <img loading="lazy" class="bean-card__pack" src="assets/packs/kenya-front-300.webp" srcset="assets/packs/kenya-front-300.webp 300w, assets/packs/kenya-front-600.webp 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px" width="7" height="12" alt="Pack placeholder: Kenya front (approved fill comes later).">
+              </picture>
+            </div>
+            <h3 id="sort-kenya-name" class="bean-card__name" tabindex="-1">Kenya</h3>
+            <p class="bean-card__roast"><span class="roast roast--full roast--1"><span class="visually-hidden">Roast level </span><span class="roast__num">1</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span></p>
+            <p class="bean-card__purpose">Filter</p>
+            <p class="bean-card__origin"><span class="nowrap">Nyeri&nbsp;·</span> <span class="nowrap">washed&nbsp;·</span> <span class="nowrap">1,700–1,900 m</span></p>
+            <p class="bean-card__notes"><span class="nowrap">blackcurrant&nbsp;·</span> <span class="nowrap">grapefruit&nbsp;·</span> <span class="nowrap">cane sugar</span></p>
+            <div class="bean-card__buy">
+              <p class="bean-card__price"><span class="bean-card__price-amount">460</span> ₴ · 250 g</p>
+              <div class="bean-card__grind">
+                <label class="bean-card__grind-label" for="grind-kenya">Grind</label>
+                <span class="select">
+                  <select class="select__control" id="grind-kenya" name="grind-kenya">
+                    <option selected>Whole beans</option>
+                    <option>Ground for filter</option>
+                  </select>
+                  <svg class="select__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </div>
+              <button class="button button--secondary bean-card__add" type="button" aria-describedby="sort-kenya-name"><span class="bean-card__add-label">Add to cart</span><span class="bean-card__add-done"><svg class="bean-card__add-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Added</span></button>
+            </div>
+          </article>
+          <article class="bean-card" id="sort-colombia" data-sort-id="colombia" data-roast="2" aria-labelledby="sort-colombia-name">
+            <div class="bean-card__media">
+              <picture>
+                <source type="image/avif" srcset="assets/packs/colombia-front-300.avif 300w, assets/packs/colombia-front-600.avif 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px">
+                <img loading="lazy" class="bean-card__pack bean-card__pack--front" src="assets/packs/colombia-front-300.webp" srcset="assets/packs/colombia-front-300.webp 300w, assets/packs/colombia-front-600.webp 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px" width="7" height="12" alt="Colombia 250 g pack, front.">
+              </picture>
+            </div>
+            <h3 id="sort-colombia-name" class="bean-card__name" tabindex="-1">Colombia</h3>
+            <p class="bean-card__roast"><span class="roast roast--full roast--2"><span class="visually-hidden">Roast level </span><span class="roast__num">2</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Medium-light</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span></p>
+            <p class="bean-card__purpose">Filter &amp; espresso</p>
+            <p class="bean-card__origin"><span class="nowrap">Huila&nbsp;·</span> <span class="nowrap">washed&nbsp;·</span> <span class="nowrap">1,600–1,900 m</span></p>
+            <p class="bean-card__notes"><span class="nowrap">caramel&nbsp;·</span> <span class="nowrap">red apple&nbsp;·</span> <span class="nowrap">cocoa</span></p>
+            <div class="bean-card__buy">
+              <p class="bean-card__price"><span class="bean-card__price-amount">390</span> ₴ · 250 g</p>
+              <div class="bean-card__grind">
+                <label class="bean-card__grind-label" for="grind-colombia">Grind</label>
+                <span class="select">
+                  <select class="select__control" id="grind-colombia" name="grind-colombia">
+                    <option selected>Whole beans</option>
+                    <option>Ground for espresso</option>
+                    <option>Ground for filter</option>
+                  </select>
+                  <svg class="select__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </div>
+              <button class="button button--secondary bean-card__add" type="button" aria-describedby="sort-colombia-name"><span class="bean-card__add-label">Add to cart</span><span class="bean-card__add-done"><svg class="bean-card__add-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Added</span></button>
+            </div>
+          </article>
+          <article class="bean-card" id="sort-brazil" data-sort-id="brazil" data-roast="3" aria-labelledby="sort-brazil-name">
+            <div class="bean-card__media">
+              <picture>
+                <source type="image/avif" srcset="assets/packs/brazil-front-300.avif 300w, assets/packs/brazil-front-600.avif 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px">
+                <img loading="lazy" class="bean-card__pack bean-card__pack--front" src="assets/packs/brazil-front-300.webp" srcset="assets/packs/brazil-front-300.webp 300w, assets/packs/brazil-front-600.webp 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px" width="7" height="12" alt="Brazil 250 g pack, front.">
+              </picture>
+            </div>
+            <h3 id="sort-brazil-name" class="bean-card__name" tabindex="-1">Brazil</h3>
+            <p class="bean-card__roast"><span class="roast roast--full roast--3"><span class="visually-hidden">Roast level </span><span class="roast__num">3</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Medium</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span></p>
+            <p class="bean-card__purpose">Espresso, with milk</p>
+            <p class="bean-card__origin"><span class="nowrap">Sul de Minas&nbsp;·</span> <span class="nowrap">natural&nbsp;·</span> <span class="nowrap">1,000–1,200 m</span></p>
+            <p class="bean-card__notes"><span class="nowrap">milk chocolate&nbsp;·</span> <span class="nowrap">nuts&nbsp;·</span> <span class="nowrap">caramel</span></p>
+            <div class="bean-card__buy">
+              <p class="bean-card__price"><span class="bean-card__price-amount">340</span> ₴ · 250 g</p>
+              <div class="bean-card__grind">
+                <label class="bean-card__grind-label" for="grind-brazil">Grind</label>
+                <span class="select">
+                  <select class="select__control" id="grind-brazil" name="grind-brazil">
+                    <option selected>Whole beans</option>
+                    <option>Ground for espresso</option>
+                  </select>
+                  <svg class="select__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </div>
+              <button class="button button--secondary bean-card__add" type="button" aria-describedby="sort-brazil-name"><span class="bean-card__add-label">Add to cart</span><span class="bean-card__add-done"><svg class="bean-card__add-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Added</span></button>
+            </div>
+          </article>
+          <article class="bean-card" id="sort-sadova-8-blend" data-sort-id="sadova-8-blend" data-roast="3" aria-labelledby="sort-sadova-8-blend-name">
+            <div class="bean-card__media">
+              <picture>
+                <source type="image/avif" srcset="assets/packs/sadova-8-blend-front-300.avif 300w, assets/packs/sadova-8-blend-front-600.avif 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px">
+                <img loading="lazy" class="bean-card__pack" src="assets/packs/sadova-8-blend-front-300.webp" srcset="assets/packs/sadova-8-blend-front-300.webp 300w, assets/packs/sadova-8-blend-front-600.webp 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px" width="7" height="12" alt="Pack placeholder: Sadova 8 blend front (approved fill comes later).">
+              </picture>
+            </div>
+            <h3 id="sort-sadova-8-blend-name" class="bean-card__name" tabindex="-1">Sadova 8 blend</h3>
+            <p class="bean-card__roast"><span class="roast roast--full roast--3"><span class="visually-hidden">Roast level </span><span class="roast__num">3</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Medium</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span></p>
+            <p class="bean-card__purpose">Espresso, with milk</p>
+            <p class="bean-card__origin"><span class="nowrap">Brazil&nbsp;·</span> <span class="nowrap">Colombia&nbsp;·</span> <span class="nowrap">natural&nbsp;·</span> <span class="nowrap">washed&nbsp;·</span> <span class="nowrap">1,000–1,900 m</span></p>
+            <p class="bean-card__notes"><span class="nowrap">chocolate&nbsp;·</span> <span class="nowrap">hazelnut&nbsp;·</span> <span class="nowrap">caramel</span></p>
+            <div class="bean-card__buy">
+              <p class="bean-card__price"><span class="bean-card__price-amount">320</span> ₴ · 250 g</p>
+              <div class="bean-card__grind">
+                <label class="bean-card__grind-label" for="grind-sadova-8-blend">Grind</label>
+                <span class="select">
+                  <select class="select__control" id="grind-sadova-8-blend" name="grind-sadova-8-blend">
+                    <option selected>Whole beans</option>
+                    <option>Ground for espresso</option>
+                  </select>
+                  <svg class="select__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </div>
+              <button class="button button--secondary bean-card__add" type="button" aria-describedby="sort-sadova-8-blend-name"><span class="bean-card__add-label">Add to cart</span><span class="bean-card__add-done"><svg class="bean-card__add-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Added</span></button>
+            </div>
+          </article>
+          <article class="bean-card" id="sort-indonesia" data-sort-id="indonesia" data-roast="4" aria-labelledby="sort-indonesia-name">
+            <div class="bean-card__media">
+              <picture>
+                <source type="image/avif" srcset="assets/packs/indonesia-front-300.avif 300w, assets/packs/indonesia-front-600.avif 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px">
+                <img loading="lazy" class="bean-card__pack" src="assets/packs/indonesia-front-300.webp" srcset="assets/packs/indonesia-front-300.webp 300w, assets/packs/indonesia-front-600.webp 600w" sizes="(min-width: 1440px) 144px, (min-width: 1024px) 106px, (min-width: 768px) 119px, 115px" width="7" height="12" alt="Pack placeholder: Indonesia front (approved fill comes later).">
+              </picture>
+            </div>
+            <h3 id="sort-indonesia-name" class="bean-card__name" tabindex="-1">Indonesia</h3>
+            <p class="bean-card__roast"><span class="roast roast--full roast--4"><span class="visually-hidden">Roast level </span><span class="roast__num">4</span><span class="visually-hidden">, </span><span class="roast__text"><span class="roast__name">Dark</span><span class="roast__scale" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span></span></p>
+            <p class="bean-card__purpose">Espresso, cezve</p>
+            <p class="bean-card__origin"><span class="nowrap">Sumatra, Aceh&nbsp;·</span> <span class="nowrap">wet-hulled&nbsp;·</span> <span class="nowrap">1,300–1,600 m</span></p>
+            <p class="bean-card__notes"><span class="nowrap">dark chocolate&nbsp;·</span> <span class="nowrap">cedar&nbsp;·</span> <span class="nowrap">spice</span></p>
+            <div class="bean-card__buy">
+              <p class="bean-card__price"><span class="bean-card__price-amount">380</span> ₴ · 250 g</p>
+              <div class="bean-card__grind">
+                <label class="bean-card__grind-label" for="grind-indonesia">Grind</label>
+                <span class="select">
+                  <select class="select__control" id="grind-indonesia" name="grind-indonesia">
+                    <option selected>Whole beans</option>
+                    <option>Ground for espresso</option>
+                    <option>Ground for cezve</option>
+                  </select>
+                  <svg class="select__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </div>
+              <button class="button button--secondary bean-card__add" type="button" aria-describedby="sort-indonesia-name"><span class="bean-card__add-label">Add to cart</span><span class="bean-card__add-done"><svg class="bean-card__add-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Added</span></button>
+            </div>
+          </article>
+        </div>
+
+        <div class="label-guide">
+          <h3 id="label-guide" class="label-guide__title" tabindex="-1">How to read our label</h3>
+          <figure class="label-map">
+            <div class="label-map__frame">
+              <picture>
+                <source type="image/avif" srcset="assets/label/ethiopia-label-660.avif 660w, assets/label/ethiopia-label-1320.avif 1320w" sizes="(min-width: 1440px) 628px, (min-width: 1024px) 48vw, calc(100vw - 72px)">
+                <img loading="lazy" class="label-map__image" src="assets/label/ethiopia-label-660.webp" srcset="assets/label/ethiopia-label-660.webp 660w, assets/label/ethiopia-label-1320.webp 1320w" sizes="(min-width: 1440px) 628px, (min-width: 1024px) 48vw, calc(100vw - 72px)" width="1320" height="896" alt="The Ethiopia pack label. Its seven fields are explained in the numbered list.">
+              </picture>
+              <span class="label-map__marks" aria-hidden="true">
+                <span class="label-map__mark label-map__mark--1"><span class="label-map__line"></span><span class="label-map__num">1</span></span>
+                <span class="label-map__mark label-map__mark--2"><span class="label-map__line"></span><span class="label-map__num">2</span></span>
+                <span class="label-map__mark label-map__mark--3"><span class="label-map__line"></span><span class="label-map__num">3</span></span>
+                <span class="label-map__mark label-map__mark--4"><span class="label-map__line"></span><span class="label-map__num">4</span></span>
+                <span class="label-map__mark label-map__mark--5"><span class="label-map__line"></span><span class="label-map__num">5</span></span>
+                <span class="label-map__mark label-map__mark--6"><span class="label-map__line"></span><span class="label-map__num">6</span></span>
+                <span class="label-map__mark label-map__mark--7"><span class="label-map__line"></span><span class="label-map__num">7</span></span>
+              </span>
+            </div>
+          </figure>
+          <ol class="label-guide__list">
+            <li class="label-guide__item">
+              <p class="label-guide__field t-label">Roast level</p>
+              <p class="label-guide__text">Level 1 · Light. Best for filter.</p>
+            </li>
+            <li class="label-guide__item">
+              <p class="label-guide__field t-label">Origin</p>
+              <p class="label-guide__text">Sidamo — the region where it grew.</p>
+            </li>
+            <li class="label-guide__item">
+              <p class="label-guide__field t-label">Process</p>
+              <p class="label-guide__text">Washed.</p>
+            </li>
+            <li class="label-guide__item">
+              <p class="label-guide__field t-label">Altitude</p>
+              <p class="label-guide__text">1,900–2,100 m above sea level.</p>
+            </li>
+            <li class="label-guide__item">
+              <p class="label-guide__field t-label">Tasting notes</p>
+              <p class="label-guide__text">Bergamot · peach · black tea.</p>
+            </li>
+            <li class="label-guide__item">
+              <p class="label-guide__field t-label">Roasted on</p>
+              <p class="label-guide__text">The date this coffee was roasted.</p>
+            </li>
+            <li class="label-guide__item">
+              <p class="label-guide__field t-label">Batch</p>
+              <p class="label-guide__text">The roast batch number.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loyalty (UX20, UX25, ART19) -->
+    <section id="loyalty" class="loyalty section" aria-labelledby="loyalty-title">
+      <div class="loyalty__grid container">
+        <div class="loyalty__head">
+          <p class="t-label">Loyalty</p>
+          <h2 id="loyalty-title" tabindex="-1" class="section-title" lang="uk">Десята — від нас</h2>
+          <p class="loyalty__lead t-lead">The tenth one’s on us.</p>
+        </div>
+
+        <div class="loyalty__card">
+          <picture>
+            <source type="image/avif" srcset="assets/loyalty/loyalty-card-front-520.avif 520w, assets/loyalty/loyalty-card-front-1040.avif 1040w, assets/loyalty/loyalty-card-front-1560.avif 1560w" sizes="(min-width: 1440px) 520px, (min-width: 1024px) 40vw, (min-width: 768px) 44vw, 92vw">
+            <img loading="lazy" class="loyalty__image" src="assets/loyalty/loyalty-card-front-520.webp" srcset="assets/loyalty/loyalty-card-front-520.webp 520w, assets/loyalty/loyalty-card-front-1040.webp 1040w, assets/loyalty/loyalty-card-front-1560.webp 1560w" sizes="(min-width: 1440px) 520px, (min-width: 1024px) 40vw, (min-width: 768px) 44vw, 92vw" width="1560" height="867" alt="The Kvatyrka loyalty card, front: ten stamp windows, the tenth drink is free.">
+          </picture>
+        </div>
+
+        <div class="loyalty__body">
+          <ol class="steps t-body">
+            <li>Take a card at the counter.</li>
+            <li>Get one stamp for each drink.</li>
+            <li>Your tenth drink is on us.</li>
+          </ol>
+          <p class="loyalty__demo t-label">Demo terms</p>
+          <a class="loyalty__action button button--secondary" href="#visit">Plan your visit</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer surface-dark">
+    <div class="site-footer__grid container">
+      <div class="site-footer__logo">
+        <img loading="lazy" class="site-footer__logo-image" src="assets/brand/logo-h-dark.svg" width="574" height="199" alt="Kvatyrka — кав’ярня · обсмажування">
+      </div>
+
+      <div class="site-footer__visit">
+        <p class="site-footer__address t-body t-accent">8 Sadova Street · Lypovyi Kut, Ukraine</p>
+        <p class="site-footer__concept t-small">Concept location</p>
+        <a class="site-footer__link t-body" href="#visit">How to find us</a>
+      </div>
+
+      <dl class="hours site-footer__hours t-body">
+        <div class="hours__row">
+          <dt class="hours__days">Mon–Fri</dt>
+          <dd class="hours__time"><span class="t-accent">7:30–20:00</span></dd>
+        </div>
+        <div class="hours__row">
+          <dt class="hours__days">Sat</dt>
+          <dd class="hours__time"><span class="t-accent">8:30–20:00</span></dd>
+        </div>
+        <div class="hours__row">
+          <dt class="hours__days">Sun</dt>
+          <dd class="hours__time"><span class="t-accent">9:00–18:00</span></dd>
+        </div>
+      </dl>
+
+      <div class="site-footer__about">
+        <p class="t-label">About this concept</p>
+        <p class="site-footer__about-text t-body">KVATYRKA is a concept project. The café, its brand and its location are fictional; the menu, coffees, prices and loyalty terms are for demonstration only. This site takes no real orders, payments or personal data.</p>
+      </div>
+
+      <p class="site-footer__copy t-small">© 2026 Kvatyrka</p>
+    </div>
+  </footer>
+
+  <!-- Cart panel (UI24): native modal dialog, shown only when cart.js works -->
+  <dialog class="cart-panel" id="cart-panel" aria-labelledby="cart-title cart-items" data-cart-panel>
+    <div class="cart-panel__head">
+      <p class="cart-panel__title"><span id="cart-title" class="t-h3">Your cart</span> <span id="cart-items" class="cart-panel__items" data-cart-items>0 items</span></p>
+      <button class="cart-panel__close icon-button" type="button" aria-label="Close cart" data-cart-close><svg class="icon-button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    </div>
+
+    <ul class="cart-panel__list" role="list" data-cart-list></ul>
+
+    <div class="cart-panel__empty" data-cart-empty hidden>
+      <p>Your cart is empty.</p>
+      <a class="cart-panel__browse" href="#beans" data-cart-browse><span>Browse our beans</span></a>
+    </div>
+
+    <div class="cart-panel__final" data-cart-final hidden>
+      <h3 class="cart-panel__final-title" tabindex="-1" data-cart-final-title>This was a demo order</h3>
+      <p>No real order was created: nothing was paid and no personal data was collected. Your cart is now empty.</p>
+      <a class="button button--secondary cart-panel__visit" href="#visit" data-cart-visit>Plan your visit</a>
+    </div>
+
+    <div class="cart-panel__foot" data-cart-foot>
+      <p class="cart-panel__total t-h3"><span>Total</span> <span data-cart-total>0 ₴</span></p>
+      <p class="cart-panel__note t-small">Prices in UAH · Demo prices. This is a demo: the site takes no real orders, payments or personal data.</p>
+      <button class="button button--primary cart-panel__order" type="button" data-cart-order>Place demo order</button>
+    </div>
+
+    <div class="visually-hidden" aria-live="polite" data-cart-live></div>
+  </dialog>
+
+  <template id="cart-line-template">
+    <li class="cart-line">
+      <p class="cart-line__head"><span class="cart-line__name" data-line-name></span><button class="cart-line__remove" type="button" data-line-remove><span>Remove</span></button></p>
+      <p class="cart-line__grind" data-line-grind></p>
+      <div class="cart-line__controls">
+        <button class="qty-button" type="button" data-line-minus><svg class="qty-button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></button>
+        <span class="cart-line__qty" data-line-qty></span>
+        <button class="qty-button" type="button" data-line-plus><svg class="qty-button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
+        <span class="cart-line__price" data-line-price></span>
+      </div>
+    </li>
+  </template>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

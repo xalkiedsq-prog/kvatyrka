@@ -1,0 +1,161 @@
+/* KVATYRKA — design tokens (website-tech-spec.md §4).
+   Sources: palette ART10–ART12, type scale UI13, spacing UI14, grid UI12, radius UI15, focus UI16, header UI9.
+   Control widths: 360 · 768 · 1024 · 1440. Display, H2 and section padding change smoothly inside each
+   range and hit the approved values exactly at the control widths; everything else steps at 768 / 1024 / 1440. */
+
+@font-face {
+  font-family: "Geologica";
+  src: url("../assets/fonts/geologica-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geologica";
+  src: url("../assets/fonts/geologica-medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geologica";
+  src: url("../assets/fonts/geologica-semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Palette — no other colours are used */
+  --color-cream: #f6eedf;          /* «Вершки» */
+  --color-espresso: #3b2a22;       /* «Еспресо» */
+  --color-apricot: #f2a65a;        /* «Абрикос» */
+  --color-apricot-40: #f4d1aa;     /* «Абрикос 40 %» */
+  --color-sun: #ffd27a;            /* «Сонце» */
+
+  /* Roast scale CB7 (ART11, UI18): colour only marks the roast level */
+  --roast-1: #e0b98a;              /* Light */
+  --roast-2: #cb9361;              /* Medium-light */
+  --roast-3: #87512e;              /* Medium */
+  --roast-4: #4e3024;              /* Dark */
+
+  /* Approved transparencies of the palette (P-7, UI24.2, UI24.4) */
+  --espresso-85: rgb(59 42 34 / 0.85);
+  --espresso-70: rgb(59 42 34 / 0.70);
+  --espresso-40: rgb(59 42 34 / 0.40);
+  --espresso-20: rgb(59 42 34 / 0.20);
+  --espresso-10: rgb(59 42 34 / 0.10);
+  --cream-40: rgb(246 238 223 / 0.40);
+  --cream-20: rgb(246 238 223 / 0.20);
+  --cream-10: rgb(246 238 223 / 0.10);
+
+  /* Type */
+  --font-family: "Geologica", system-ui, sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --label-tracking: 0.08em;        /* tracking 80 */
+
+  /* 360–767 values (mobile first) */
+  --display-size: clamp(48px, calc(48px + 40 * (100vw - 360px) / 408), 88px);
+  --display-line: var(--display-size);
+  --h2-size: clamp(32px, calc(32px + 8 * (100vw - 360px) / 408), 40px);
+  --h2-line: calc(var(--h2-size) + 8px);
+  --h3-size: 22px;
+  --h3-line: 28px;
+  --lead-size: 18px;
+  --lead-line: 28px;
+  --body-size: 16px;
+  --body-line: 24px;
+  --small-size: 14px;
+  --small-line: 20px;
+  --label-size: 12px;
+  --label-line: 16px;
+  --nav-size: 16px;
+
+  /* Vertical spacing UI14 */
+  --space-section: clamp(64px, calc(64px + 16 * (100vw - 360px) / 408), 80px);
+  --space-block: 32px;
+  --space-h2-content: 16px;
+  --space-label-heading: 8px;
+  --space-paragraph: 16px;
+  --space-lead-body: 16px;
+
+  /* Grid UI12 */
+  --grid-columns: 4;
+  --grid-gutter: 16px;
+  --page-margin: 16px;
+  --content-max: 1280px;
+
+  /* Shape and focus UI15, UI16 */
+  --radius-control: 8px;
+  --focus-width: 2px;
+  --focus-offset: 2px;
+  --focus-color: var(--color-espresso);
+
+  /* Header UI9 */
+  --header-height: 56px;
+  --hit-size: 44px;
+  --cart-reserve: 0px;             /* 44 + 8 from 768 (UI8) */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --display-size: calc(88px + 24 * (100vw - 768px) / 256);
+    --display-line: calc(88px + 20 * (100vw - 768px) / 256);
+    --h2-size: calc(40px + 8 * (100vw - 768px) / 256);
+    --h3-size: 24px;
+    --h3-line: 32px;
+    --lead-size: 20px;
+    --lead-line: 30px;
+
+    --space-section: calc(80px + 16 * (100vw - 768px) / 256);
+    --space-block: 48px;
+    --space-h2-content: 24px;
+
+    --grid-columns: 8;
+    --grid-gutter: 24px;
+    --page-margin: 32px;
+
+    --header-height: 72px;
+    --cart-reserve: 52px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --display-size: calc(112px + 32 * (100vw - 1024px) / 416);
+    --display-line: calc(108px + 28 * (100vw - 1024px) / 416);
+    --h2-size: calc(48px + 8 * (100vw - 1024px) / 416);
+    --lead-size: 22px;
+    --lead-line: 32px;
+    --body-size: 18px;
+    --body-line: 28px;
+    --label-size: 13px;
+
+    --space-section: calc(96px + 32 * (100vw - 1024px) / 416);
+    --space-label-heading: 16px;
+    --space-paragraph: 24px;
+    --space-lead-body: 24px;
+
+    --grid-columns: 12;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --display-size: 144px;
+    --display-line: 136px;
+    --h2-size: 56px;
+    --h3-size: 28px;
+    --h3-line: 36px;
+
+    --space-section: 128px;
+    --space-block: 64px;
+    --space-h2-content: 32px;
+
+    --page-margin: 80px;
+  }
+}

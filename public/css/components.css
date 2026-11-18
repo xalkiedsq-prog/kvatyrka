@@ -1,0 +1,730 @@
+/* KVATYRKA — components.
+   Step 8.2: site header and navigation (UI2–UI10, UI12, UI16), buttons (P-7, UI15, UI16).
+   Roast label, filter, bean card, grind, cart — steps 8.5–8.6. */
+
+/* =========================================================
+   Site header — fixed while scrolling (UX11)
+   360–767: height 56, K5 32 × 28 in a 44 × 44 zone, navigation right after it.
+   768+:    height 72, logo B 220 px on the left, navigation on the right,
+            52 px reserved for the cart icon (UI8). Cream background, no border (v50).
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-height);
+  background: var(--color-cream);
+}
+
+.site-header__inner {
+  position: relative;                  /* the cart bag sits at the right edge without moving the nav (UI8) */
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.site-header__home {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--hit-size);
+  min-height: var(--hit-size);
+  text-decoration: none;
+}
+
+.site-header__logo {
+  width: 32px;
+  height: 28px;
+}
+
+.site-nav {
+  margin-left: 8px;
+  margin-right: var(--cart-reserve);
+}
+
+.site-nav__list {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+}
+
+.site-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--hit-size);
+  height: var(--hit-size);
+  padding: 0 2px;
+  font-size: var(--nav-size);
+  line-height: 24px;
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  text-decoration-line: none;     /* UI10: navigation is not underlined by default */
+  text-underline-offset: 4px;
+}
+
+@media (hover: hover) {
+  .site-nav__link:hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+  }
+}
+
+.site-nav__link[aria-current] {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+}
+
+@media (hover: hover) {
+  .site-nav__link[aria-current]:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+@media (min-width: 768px) {
+  /* logo-h-light.svg includes its clear space (viewBox 573.9 × 199.2, artwork 473.3 × 98.5).
+     Scaled so the artwork is exactly 220 × 45.8 (ART8, v50); negative margins hide the clear space
+     from layout, so the link and its focus ring follow the visible logo. */
+  .site-header__logo {
+    width: 266.76px;
+    max-width: none;
+    height: auto;
+    margin: -23.4px;
+  }
+
+  .site-nav {
+    margin-left: auto;
+  }
+}
+
+/* =========================================================
+   Buttons (P-7, UI15, UI16)
+   Height 48, radius 8, 24 px from edge to text, Medium 16.
+   Hover only on devices that really hover; pressed only while pressed.
+   Disabled look for both `disabled` and `aria-disabled="true"`;
+   for `aria-disabled` the action itself is blocked by JavaScript.
+   ========================================================= */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 22px;                /* + 2 px border = 24 px to the text */
+  border: 2px solid transparent;
+  border-radius: var(--radius-control);
+  background: none;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button--primary {
+  background: var(--color-espresso);
+  color: var(--color-cream);
+}
+
+.button--secondary {
+  border-color: var(--color-espresso);
+  color: var(--color-espresso);
+}
+
+.surface-dark .button--secondary {
+  border-color: var(--color-cream);
+  color: var(--color-cream);
+}
+
+@media (hover: hover) {
+  .button--primary:hover:not([disabled], [aria-disabled="true"]) {
+    background: var(--espresso-85);
+  }
+
+  .button--secondary:hover:not([disabled], [aria-disabled="true"]) {
+    background: var(--espresso-10);
+  }
+
+  .surface-dark .button--secondary:hover:not([disabled], [aria-disabled="true"]) {
+    background: var(--cream-10);
+  }
+}
+
+.button--primary:active:not([disabled], [aria-disabled="true"]) {
+  background: var(--espresso-70);
+}
+
+.button--secondary:active:not([disabled], [aria-disabled="true"]) {
+  background: var(--espresso-20);
+}
+
+.surface-dark .button--secondary:active:not([disabled], [aria-disabled="true"]) {
+  background: var(--cream-20);
+}
+
+.button[disabled],
+.button[aria-disabled="true"] {
+  background: none;
+  border-color: var(--espresso-40);
+  color: var(--espresso-40);
+  cursor: not-allowed;
+}
+
+.surface-dark .button[disabled],
+.surface-dark .button[aria-disabled="true"] {
+  border-color: var(--cream-40);
+  color: var(--cream-40);
+}
+
+/* ---------- Roast level label, compact version (ART11, UI18) ----------
+   Plate 24 × 24 with the number, the English word (Label 12), cumulative scale of 4 segments 12 × 6.
+   The full version (32 × 40, segments 16 × 6) is added with the Beans catalogue in step 8.5. */
+
+.roast {
+  --roast-color: var(--roast-1);
+  --roast-ink: var(--color-espresso);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  color: var(--color-espresso);
+}
+
+.roast--2 { --roast-color: var(--roast-2); }
+.roast--3 { --roast-color: var(--roast-3); --roast-ink: var(--color-cream); }
+.roast--4 { --roast-color: var(--roast-4); --roast-ink: var(--color-cream); }
+
+.roast__num {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  background: var(--roast-color);
+  color: var(--roast-ink);
+  font-weight: var(--weight-semibold);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.roast__name {
+  font-weight: var(--weight-semibold);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: var(--label-tracking);
+  text-transform: uppercase;
+  margin-right: calc(-1 * var(--label-tracking));   /* no tracking after the last letter */
+}
+
+.roast__scale {
+  display: flex;
+  gap: 4px;
+}
+
+.roast__scale > span {
+  width: 12px;
+  height: 6px;
+  border: 1px solid var(--color-espresso);
+}
+
+/* Cumulative: level N fills segments 1…N */
+.roast--1 .roast__scale > span:nth-child(-n + 1),
+.roast--2 .roast__scale > span:nth-child(-n + 2),
+.roast--3 .roast__scale > span:nth-child(-n + 3),
+.roast--4 .roast__scale > span:nth-child(-n + 4) {
+  background: var(--roast-color);
+}
+
+/* Full version (UI18): plate 32 × 40, number SemiBold 20, word Label 12 / 13, scale 4 × (16 × 6) */
+.roast--full {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.roast--full .roast__num {
+  width: 32px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.roast__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 4.5px;
+}
+
+.roast--full .roast__name {
+  font-size: var(--label-size);
+}
+
+.roast--full .roast__scale {
+  margin-top: 4.5px;                               /* baseline of the word → scale = 8 px */
+}
+
+.roast--full .roast__scale > span {
+  width: 16px;
+}
+
+/* ---------- Select (UI21): native <select>, Lucide chevron-down ---------- */
+
+.select {
+  position: relative;
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.select__control {
+  appearance: none;
+  width: 100%;
+  height: 48px;
+  padding: 0 48px 0 16px;
+  border: 1px solid var(--color-espresso);
+  border-radius: var(--radius-control);
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.select__icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* ---------- Roast filter (UI19): radiogroup of native radios ---------- */
+
+.filter {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.filter__options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter__option {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 40px;      /* 16 px gap + 24 px check slot */
+  grid-template-areas:
+    "label check"
+    "purpose .";
+  align-items: center;
+  row-gap: 8px;
+  min-height: 56px;
+  padding: 7px 16px;                   /* 8 px from the outer edge, as in v50 (88 / 56 px options) */
+  border: 1px solid var(--color-espresso);
+  border-radius: var(--radius-control);
+  font-size: 16px;                     /* purpose and «All» — Body 16 at every width (UI19) */
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.filter__option > .roast,
+.filter__all {
+  grid-area: label;
+}
+
+.filter__all {
+  font-weight: var(--weight-medium);
+}
+
+.filter__purpose {
+  grid-area: purpose;
+}
+
+.filter__check {
+  grid-area: check;
+  justify-self: end;
+  visibility: hidden;
+}
+
+.filter__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.filter__option:has(.filter__input:checked) {
+  box-shadow: inset 0 0 0 1px var(--color-espresso);   /* 2 px frame without changing the size */
+}
+
+.filter__option:has(.filter__input:checked) .filter__check {
+  visibility: visible;
+}
+
+.filter__option:has(.filter__input:focus-visible) {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+}
+
+.filter__break {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .filter__options {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .filter__option {
+    display: flex;
+    align-items: center;
+    padding-block: 0;
+  }
+
+  .filter__option--level .filter__purpose {
+    margin-left: 12px;                 /* label → purpose */
+  }
+
+  .filter__check {
+    flex: none;
+    margin-left: 16px;                 /* purpose (or «All») → check slot */
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Rows: All · 1 · 2 / 3 · 4 (UI11) */
+  .filter__options {
+    row-gap: 0;
+  }
+
+  .filter__break {
+    display: block;
+    flex-basis: 100%;
+    height: 0;
+  }
+
+  .filter__break ~ .filter__option {
+    margin-top: 8px;
+  }
+}
+
+/* ---------- Cart bag in the header (UI23) ---------- */
+
+.cart-button {
+  position: absolute;
+  top: 50%;
+  right: var(--page-margin);
+  display: none;
+  place-items: center;
+  width: var(--hit-size);
+  height: var(--hit-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: none;
+  color: var(--color-espresso);
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.ready-cart .cart-button:not([hidden]) {
+  display: grid;
+}
+
+.cart-button__icon {
+  transform: translateX(-4px);         /* bag 4 px left of the zone centre */
+}
+
+.cart-button__count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9px;                  /* circle for one digit, capsule growing left for two */
+  background: var(--color-espresso);
+  box-shadow: 0 0 0 2px var(--color-cream);   /* 2 px separator in the background colour */
+  color: var(--color-cream);
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  line-height: 18px;
+  text-align: center;
+}
+
+.cart-button:not([data-wide]) .cart-button__count {
+  width: 18px;
+  padding: 0;
+}
+
+/* ---------- Add to cart → Added (UI22): same size, word + check ---------- */
+
+.bean-card__add-done {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.bean-card__add[data-state="added"] .bean-card__add-label {
+  display: none;
+}
+
+.bean-card__add[data-state="added"] .bean-card__add-done {
+  display: inline-flex;
+}
+
+/* ---------- Icon and quantity buttons (UI24) ---------- */
+
+.icon-button,
+.qty-button {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--hit-size);
+  height: var(--hit-size);
+  padding: 0;
+  background: none;
+  color: var(--color-espresso);
+  cursor: pointer;
+}
+
+.icon-button {
+  border: 0;
+  border-radius: var(--radius-control);
+}
+
+.qty-button {
+  border: 1px solid var(--color-espresso);
+  border-radius: var(--radius-control);
+}
+
+.qty-button[aria-disabled="true"],
+.qty-button[disabled] {
+  border-color: var(--espresso-40);
+  color: var(--espresso-40);
+  cursor: not-allowed;
+}
+
+/* ---------- Cart panel (UI24): native modal dialog ---------- */
+
+html.cart-open {
+  overflow: hidden;                    /* the page does not scroll under the open panel */
+}
+
+.cart-panel {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-cream);
+  color: var(--color-espresso);
+}
+
+.cart-panel[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-panel::backdrop {
+  background: transparent;             /* 360–767: the panel covers the whole screen */
+}
+
+.cart-panel__head {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: var(--header-height);
+  padding-inline: 16px 6px;            /* the 24 px icon ends at the 16 px field */
+  border-bottom: 1px solid var(--color-espresso);
+}
+
+.cart-panel__title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 8px;
+}
+
+.cart-panel__items {
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+.cart-panel__list {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 0 16px;
+  overflow-y: auto;
+  list-style: none;
+  scroll-padding-block: 8px;           /* a focused control and its ring stay fully visible */
+}
+
+.cart-line {
+  padding-block: 16px;
+  border-bottom: 1px solid var(--color-espresso);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+.cart-line__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cart-line__name {
+  font-weight: var(--weight-medium);
+}
+
+/* «Remove» looks like a link (ART10), hit area ≥ 44 × 44, focus ring around the text only (UI24 п. 9) */
+.cart-line__remove,
+.cart-panel__browse {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: var(--hit-size);
+  min-height: var(--hit-size);
+  margin-block: -10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.cart-line__remove:focus-visible,
+.cart-panel__browse:focus-visible {
+  outline: none;
+}
+
+.cart-line__remove:focus-visible > span,
+.cart-panel__browse:focus-visible > span {
+  border-radius: 2px;
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+}
+
+@media (hover: hover) {
+  .cart-line__remove:hover,
+  .cart-panel__browse:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+.cart-line__controls {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.cart-line__qty {
+  min-width: 40px;
+  font-weight: var(--weight-medium);
+  text-align: center;
+}
+
+.cart-line__price {
+  margin-left: auto;
+  font-weight: var(--weight-medium);
+}
+
+.cart-panel__empty,
+.cart-panel__final {
+  padding: 24px 16px;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+.cart-panel__browse {
+  justify-content: flex-start;
+  margin-block: 8px 0;
+}
+
+.cart-panel__final-title {
+  width: fit-content;
+}
+
+.cart-panel__final p {
+  margin-top: 16px;
+}
+
+.cart-panel__visit {
+  margin-top: 24px;
+}
+
+.cart-panel__foot {
+  flex: none;
+  padding: 16px;
+  border-top: 1px solid var(--color-espresso);
+}
+
+.cart-panel__total {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cart-panel__note {
+  margin-top: 8px;
+}
+
+.cart-panel__order {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.cart-panel [hidden] {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cart-panel {
+    left: auto;
+    width: 400px;
+    border-left: 1px solid var(--color-espresso);
+  }
+
+  .cart-panel::backdrop {
+    background: rgb(59 42 34 / 0.4);   /* «Еспресо» 40 % (UI24.4) */
+  }
+
+  .cart-panel__head {
+    padding-inline: 24px 14px;
+  }
+
+  .cart-panel__list {
+    padding-inline: 24px;
+  }
+
+  .cart-panel__empty,
+  .cart-panel__final {
+    padding-inline: 24px;
+  }
+
+  .cart-panel__foot {
+    padding: 24px;
+  }
+}

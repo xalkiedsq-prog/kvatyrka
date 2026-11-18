@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>KVATYRKA · preview 8.2 · states and type (not part of the site)</title>
+  <link rel="stylesheet" href="../../public/css/tokens.css">
+  <link rel="stylesheet" href="../../public/css/base.css">
+  <link rel="stylesheet" href="../../public/css/layout.css">
+  <link rel="stylesheet" href="../../public/css/components.css">
+  <style>
+    /* Preview sheet layout only */
+    .pv { padding: 40px; }
+    .pv-title { font-size: 14px; line-height: 20px; margin-bottom: 32px; opacity: .7; }
+    .pv-block { margin-bottom: 48px; }
+    .pv-block > h2 { font-size: 13px; line-height: 16px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+    .pv-table { display: grid; grid-template-columns: 200px repeat(5, 210px); gap: 16px 24px; align-items: center; justify-items: start; }
+    .pv-table.nav { grid-template-columns: 200px repeat(4, 220px); }
+    .pv-head { font-size: 12px; line-height: 16px; opacity: .7; }
+    .pv-row-name { font-size: 14px; line-height: 20px; }
+    .pv-dark { padding: 24px; margin: 0 -24px; }
+    .pv-type > * + * { margin-top: 16px; }
+    .pv-type .pv-note { font-size: 12px; line-height: 16px; opacity: .6; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="pv">
+    <p class="pv-title">KVATYRKA · Stage 8.2 preview — not part of the site. States are shown with the site's own CSS (force-states.js copies its :hover / :active / :focus-visible rules).</p>
+
+    <section class="pv-block">
+      <h2>Buttons — P-7</h2>
+      <div class="pv-table">
+        <span></span><span class="pv-head">Default</span><span class="pv-head">Hover</span><span class="pv-head">Pressed</span><span class="pv-head">Focus</span><span class="pv-head">Disabled</span>
+
+        <span class="pv-row-name">Primary</span>
+        <a class="button button--primary" href="#">Plan your visit</a>
+        <a class="button button--primary is-hover" href="#">Plan your visit</a>
+        <a class="button button--primary is-active" href="#">Plan your visit</a>
+        <a class="button button--primary is-focus" href="#">Plan your visit</a>
+        <button class="button button--primary" type="button" disabled>Plan your visit</button>
+
+        <span class="pv-row-name">Secondary</span>
+        <a class="button button--secondary" href="#">See the menu</a>
+        <a class="button button--secondary is-hover" href="#">See the menu</a>
+        <a class="button button--secondary is-active" href="#">See the menu</a>
+        <a class="button button--secondary is-focus" href="#">See the menu</a>
+        <button class="button button--secondary" type="button" aria-disabled="true">See the menu</button>
+      </div>
+
+      <div class="surface-dark pv-dark" style="margin-top: 24px">
+        <div class="pv-table">
+          <span class="pv-row-name">Secondary on dark</span>
+          <a class="button button--secondary" href="#">See the menu</a>
+          <a class="button button--secondary is-hover" href="#">See the menu</a>
+          <a class="button button--secondary is-active" href="#">See the menu</a>
+          <a class="button button--secondary is-focus" href="#">See the menu</a>
+          <button class="button button--secondary" type="button" disabled>See the menu</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="pv-block">
+      <h2>Navigation items — UI10, UI16</h2>
+      <div class="pv-table nav">
+        <span></span><span class="pv-head">Default</span><span class="pv-head">Hover</span><span class="pv-head">Current</span><span class="pv-head">Focus</span>
+        <span class="pv-row-name">Header link</span>
+        <span><a class="site-nav__link" href="#">Menu</a></span>
+        <span><a class="site-nav__link is-hover" href="#">Menu</a></span>
+        <span><a class="site-nav__link" href="#" aria-current="true">Menu</a></span>
+        <span><a class="site-nav__link is-focus" href="#">Menu</a></span>
+      </div>
+    </section>
+
+    <section class="pv-block">
+      <h2>Text links — UI16, ART10</h2>
+      <div class="pv-table nav">
+        <span></span><span class="pv-head">Default</span><span class="pv-head">Hover</span><span class="pv-head">Focus</span><span></span>
+        <span class="pv-row-name">On cream</span>
+        <span><a href="#">How to read our label</a></span>
+        <span><a class="is-hover" href="#">How to read our label</a></span>
+        <span><a class="is-focus" href="#">How to read our label</a></span>
+        <span></span>
+      </div>
+      <div class="surface-dark pv-dark" style="margin-top: 24px">
+        <div class="pv-table nav">
+          <span class="pv-row-name">On espresso</span>
+          <span><a href="#">Plan your visit</a></span>
+          <span><a class="is-hover" href="#">Plan your visit</a></span>
+          <span><a class="is-focus" href="#">Plan your visit</a></span>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="pv-block pv-type">
+      <h2>Type scale — UI13 (current width)</h2>
+      <p class="t-label">Menu</p>
+      <p class="t-display">Kvatyrka</p><p class="pv-note" data-measure="t-display"></p>
+      <p class="t-h2">What’s a kvatyrka?</p><p class="pv-note" data-measure="t-h2"></p>
+      <p class="t-h3">Morning rituals</p><p class="pv-note" data-measure="t-h3"></p>
+      <p class="t-lead">A small opening sash in a window, used to let fresh air in.</p><p class="pv-note" data-measure="t-lead"></p>
+      <p class="t-body">We roast in small batches and print the roast date on every pack. Body text never goes below 16 px.</p><p class="pv-note" data-measure="t-body"></p>
+      <p class="t-body"><span class="t-accent">420 ₴ · 250 g</span> — accent (Medium, body size)</p>
+      <p class="t-small">Concept location</p><p class="pv-note" data-measure="t-small"></p>
+      <p class="t-label">Prices in UAH · Demo prices</p><p class="pv-note" data-measure="t-label"></p>
+    </section>
+  </div>
+
+  <script type="module" src="force-states.js"></script>
+  <script type="module">
+    function measure() {
+      for (const note of document.querySelectorAll("[data-measure]")) {
+        const el = document.querySelector("." + note.dataset.measure);
+        const cs = getComputedStyle(el);
+        note.textContent = `${note.dataset.measure}: ${parseFloat(cs.fontSize).toFixed(1)} / ${parseFloat(cs.lineHeight).toFixed(1)} px · weight ${cs.fontWeight} · viewport ${innerWidth}px`;
+      }
+    }
+    measure();
+    addEventListener("resize", measure);
+  </script>
+</body>
+</html>

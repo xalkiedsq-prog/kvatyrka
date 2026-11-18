@@ -1,0 +1,8 @@
+# Local QA output, caches and system files — not part of the repository
+tools/qa-*/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
