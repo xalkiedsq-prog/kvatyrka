@@ -668,6 +668,23 @@
   transform: translateX(-50%);
 }
 
+/* Contact shadow under the pack (owner's decision 18.11.2026, design review R3): the pack stands on the
+   surface. Two soft «Еспресо» gradients — a wide one (6–16 %) and a tighter contact core (22 %) —
+   centred on the bottom of the pack (90 % of the zone); painted below the picture. */
+.bean-card__media::before {
+  content: "";
+  position: absolute;
+  top: 87.1%;
+  left: 50%;
+  width: 44%;
+  height: 6%;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(closest-side, rgb(59 42 34 / 0.22), rgb(59 42 34 / 0)) center / 82% 40% no-repeat,
+    radial-gradient(closest-side, rgb(59 42 34 / 0.16), rgb(59 42 34 / 0.06) 60%, rgb(59 42 34 / 0)) center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
 .bean-card__pack {
   width: auto;
   height: 100%;
