@@ -97,6 +97,7 @@
 
   /* Header UI9 */
   --header-height: 56px;
+  --header-bg: var(--roast-3);     /* header strip «Brazil» #87512E (owner's decision 18.11.2026) */
   --hit-size: 44px;
   --cart-reserve: 0px;             /* 44 + 8 from 768 (UI8) */
 }

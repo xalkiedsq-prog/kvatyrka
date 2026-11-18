@@ -14,7 +14,9 @@
   top: 0;
   z-index: 50;
   height: var(--header-height);
-  background: var(--color-cream);
+  --focus-color: var(--color-cream);   /* focus ring on the «Brazil» strip, as on dark surfaces */
+  background: var(--header-bg);
+  color: var(--color-cream);           /* navigation links inherit «Вершки» */
 }
 
 .site-header__inner {
@@ -85,7 +87,7 @@
 }
 
 @media (min-width: 768px) {
-  /* logo-h-light.svg includes its clear space (viewBox 573.9 × 199.2, artwork 473.3 × 98.5).
+  /* logo-h-dark.svg (same viewBox and artwork as logo-h-light.svg) includes its clear space (viewBox 573.9 × 199.2, artwork 473.3 × 98.5).
      Scaled so the artwork is exactly 220 × 45.8 (ART8, v50); negative margins hide the clear space
      from layout, so the link and its focus ring follow the visible logo. */
   .site-header__logo {
@@ -431,7 +433,7 @@
   border: 0;
   border-radius: var(--radius-control);
   background: none;
-  color: var(--color-espresso);
+  color: var(--color-cream);           /* header bag on the «Brazil» strip */
   transform: translateY(-50%);
   cursor: pointer;
 }
