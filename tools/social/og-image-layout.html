@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../public/css/tokens.css"><link rel="stylesheet" href="../../public/css/base.css">
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:var(--color-cream)}
+.frame{position:relative;width:1200px;height:630px}
+.logo{position:absolute;left:var(--lx);top:var(--ly);width:var(--lw);height:var(--lh)}
+.logo img{display:block;position:absolute;width:var(--sw);left:var(--ox);top:var(--oy)}
+.label{position:absolute;left:var(--tx);top:var(--ty);font-weight:600;font-size:22px;line-height:28px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-espresso);white-space:nowrap;font-family:var(--font-family)}
+.arch{position:absolute;right:72px;top:56px;height:518px;aspect-ratio:410.667/632;overflow:hidden;border-radius:33.333% 33.333% 0 0/21.66% 21.66% 0 0}
+.arch img{width:100%;height:100%;object-fit:cover;display:block}
+.arch::before{content:"";position:absolute;inset:0;z-index:1;border:1.5px solid var(--color-espresso);border-radius:inherit}
+</style></head><body><div class="frame" id="f">
+<div class="logo" id="logo"><img src="../../public/assets/brand/logo-h-light.svg" alt=""></div>
+<p class="label" id="lab">Coffee shop &amp; roastery · Concept project</p>
+<div class="arch"><img src="../../public/assets/photos/f1-hero-window-840.webp" alt=""></div>
+</div>
+<script>
+// visible logo = drawing inside guard field (viewBox 573.919 x 199.228, drawing 473.3 x 98.5, centred)
+const VW=573.919,VH=199.228,DW=473.3,DH=98.5;
+const lw=560, sw=lw*VW/DW, lh=lw*DH/DW;
+const s=document.documentElement.style;
+const L=83, groupH=lh+40+28, T=Math.round((630-groupH)/2)+8;
+s.setProperty('--lw',lw+'px');s.setProperty('--lh',lh+'px');s.setProperty('--sw',sw+'px');
+s.setProperty('--ox',(-(VW-DW)/2*sw/VW)+'px');s.setProperty('--oy',(-(VH-DH)/2*sw/VW)+'px');
+s.setProperty('--lx',L+'px');s.setProperty('--ly',T+'px');
+s.setProperty('--tx',(L-12)+'px');s.setProperty('--ty',(T+lh+40)+'px');
+</script></body></html>

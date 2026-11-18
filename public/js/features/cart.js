@@ -295,10 +295,31 @@ export function init() {
 
   // Escape closes through closePanel(), so our focus return runs after the browser's own one
   panel.addEventListener("keydown", (event) => {
+    if (event.key === "Tab") {
+      keepTabInPanel(event);
+      return;
+    }
     if (event.key !== "Escape") return;
     event.preventDefault();
     closePanel();
   });
+
+  // Tab cycles inside the panel (UI24.5): after the last control back to «×», and the reverse.
+  // Without this, Chrome lets Tab leave a modal dialog for the browser toolbar once per cycle.
+  function keepTabInPanel(event) {
+    const controls = [...panel.querySelectorAll("button, a[href], select, [tabindex]:not([tabindex='-1'])")]
+      .filter((el) => !el.disabled && el.getClientRects().length > 0);
+    if (controls.length === 0) return;
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    } else if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    }
+  }
   panel.addEventListener("cancel", (event) => {
     if (event.cancelable) {
       event.preventDefault();

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Kvatyrka (concept project)</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#3B2A22">
+
+  <link rel="icon" href="/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/sections.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="site-header__home" href="/">
+        <picture>
+          <source media="(min-width: 768px)" srcset="/assets/brand/logo-h-dark.svg" width="267" height="93">
+          <img class="site-header__logo" src="/assets/brand/k5-dark.svg" width="32" height="28" alt="Kvatyrka — homepage">
+        </picture>
+      </a>
+
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="/#visit">Visit</a></li>
+          <li><a class="site-nav__link" href="/#menu">Menu</a></li>
+          <li><a class="site-nav__link" href="/#story">Story</a></li>
+          <li><a class="site-nav__link" href="/#beans">Beans</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="not-found section container" aria-labelledby="not-found-title">
+      <p class="t-label">Error 404</p>
+      <h1 id="not-found-title" class="section-title t-h2">Page not found</h1>
+      <p class="not-found__text t-body">This page doesn’t exist.</p>
+      <p class="not-found__action"><a class="button button--primary" href="/">Go to the homepage</a></p>
+      <p class="not-found__note t-small">Kvatyrka is a fictional concept project.</p>
+    </section>
+  </main>
+</body>
+</html>

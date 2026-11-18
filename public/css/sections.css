@@ -1130,3 +1130,17 @@
 .bean-card__name:focus {
   outline: none;                       /* the target frame of the card is the indicator */
 }
+
+/* ---------- 404 page (Stage 9): existing type and spacing tokens only ---------- */
+
+.not-found__text {
+  margin-top: var(--space-h2-content);
+}
+
+.not-found__action {
+  margin-top: var(--space-block);
+}
+
+.not-found__note {
+  margin-top: var(--space-block);
+}

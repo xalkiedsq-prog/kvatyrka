@@ -59,3 +59,9 @@ Concept scheme, not a real map (ART14): vector master `Website\Map\Kvatyrka_Dist
 ## Pack fronts for the F7 composite
 
 `tools/source-exports/pack-front-{ethiopia,colombia,brazil}.png` — clean fronts exported from the approved `Kvatyrka_Pack250_composition_study_v11_F2a.ai` (technical layers hidden, file closed without saving). Used only as the sources of the F7 photo composite; the catalogue uses the realistic packs above.
+
+## Social preview (Open Graph / Twitter) — `public/assets/social`
+
+| File | Source | Notes |
+|---|---|---|
+| `og-image-1200x630.jpg` | `public/assets/photos/f1-hero-window-840.webp` (approved F1, unchanged, in the Hero arch shape ART3) + `public/assets/brand/logo-h-light.svg` (approved logo B LIGHT, unchanged) | Layout `tools/social/og-image-layout.html` (Вершки background, Label style for «Coffee shop & roastery · Concept project», arch outline 1 px Еспресо as in Hero). Rendered in Chromium at 2×, downsampled to 1200 × 630, JPEG q86, progressive, 4:4:4, no metadata (≈ 71 KB). Stage 9, 18.11.2026. |
