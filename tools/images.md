@@ -26,7 +26,7 @@ All files in `public/assets` are copies or web exports of approved materials, or
 
 ## Photos F1–F7 — `public/assets/photos` (approved masters, 18.11.2026)
 
-Source: `Website\Photos\04_masters` (PNG, RGB, embedded sRGB IEC61966-2.1, no alpha; approval log — `website-photo-brief.md` §8–15). Resized with Lanczos, AVIF + WebP; the script writes them without ICC / EXIF / GPS. Quality AVIF / WebP 60 / 82; F3 and F7 68 / 86. The committed files additionally carry a C2PA content-credentials manifest (≈ 5.9 KB per file) added when the files were delivered from the AI workspace; pixels are identical to the script output.
+Source: `Website\Photos\04_masters` (PNG, RGB, embedded sRGB IEC61966-2.1, no alpha; approval log — `website-photo-brief.md` §8–15). Resized with Lanczos, AVIF + WebP; the script writes them without ICC / EXIF / GPS. Quality AVIF / WebP 60 / 82; F3 and F7 68 / 86. The committed files additionally carry a C2PA content-credentials manifest (≈ 5.9 KB per file) added when the files were delivered from the AI workspace; pixels are identical to the script output. In `index.html` every F1–F7 URL carries `?v=20261118`: the files keep the placeholder names and `/assets/photos/*` is cached for a day (`_headers`), so the version mark makes browsers that saw the placeholders load the new photos. Change the mark whenever a photo file is replaced under the same name.
 
 | Stem | Master | Widths | Largest AVIF |
 |---|---|---|---|
